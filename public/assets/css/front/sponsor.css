@@ -1,0 +1,172 @@
+
+.titulo{
+    color: rgb(214, 163, 21);
+}
+
+.btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    transition: 0.5s;
+    line-height: 1;
+    color: #fff;
+    margin-right: auto;
+    margin-left: auto;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+    background: #D8A709;
+    margin-top: 15px;
+  }
+
+  .btn-get-started:hover {
+    background: #A65D16;
+    color: #fff;
+    border-color: #c0a010;
+  }
+
+
+/* Contact Section
+--------------------------------*/
+
+.query{
+    display: block;
+    
+    
+  }
+  
+  .query2{
+    display: block;
+   
+    
+  }
+  
+  #contact {
+    background: #fff;
+  }
+  #contact .info {
+    color: #222;
+  }
+  #contact .info i {
+    font-size: 32px;
+    color: #e2d51f;
+    float: left;
+    line-height: 0;
+  }
+  #contact .info p {
+    padding: 0 0 10px 50px;
+    margin-bottom: 20px;
+    line-height: 22px;
+    font-size: 14px;
+  }
+  #contact .info .email p {
+    padding-top: 5px;
+  }
+  #contact .social-links {
+    padding: 20px 0;
+  }
+  #contact .social-links a {
+    font-size: 18px;
+    display: inline-block;
+    background: #e7eb1a;
+    color: #fff;
+    line-height: 1;
+    padding: 6px 0 8px 0;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+  }
+  #contact .social-links a:hover {
+    background: #55b03f;
+    color: #fff;
+  }
+  #contact .php-email-form .validate {
+    display: none;
+    color: red;
+    margin: 0 0 15px 0;
+    font-weight: 400;
+    font-size: 13px;
+  }
+  #contact .php-email-form .error-message {
+    display: none;
+    color: #fff;
+    background: #ed3c0d;
+    text-align: left;
+    padding: 15px;
+    font-weight: 600;
+  }
+  #contact .php-email-form .error-message br + br {
+    margin-top: 25px;
+  }
+  #contact .php-email-form .sent-message {
+    display: none;
+    color: #fff;
+    background: #f1d013;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+  }
+  #contact .php-email-form .loading {
+    display: none;
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+  }
+  #contact .php-email-form .loading:before {
+    content: "";
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px -6px 0;
+    border: 3px solid #18d26e;
+    border-top-color: #eee;
+    -webkit-animation: animate-loading 1s linear infinite;
+    animation: animate-loading 1s linear infinite;
+  }
+  #contact .php-email-form input, #contact .php-email-form textarea {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+  }
+  #contact .php-email-form input:focus, #contact .php-email-form textarea:focus {
+    border-color: #71c55d;
+  }
+  #contact .php-email-form input {
+    padding: 10px 15px;
+  }
+  #contact .php-email-form textarea {
+    padding: 12px 15px;
+  }
+  #contact .php-email-form button[type=submit] {
+    background: #71c55d;
+    border: 0;
+    padding: 10px 24px;
+    color: #fff;
+    transition: 0.4s;
+  }
+  #contact .php-email-form button[type=submit]:hover {
+    background: #92d283;
+  }
+  @-webkit-keyframes animate-loading {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes animate-loading {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  

@@ -24,7 +24,7 @@
   <div class="container-fluid">
     <section class="section-img my-0 py-0">
       <!-- el elemento padre debe ser posicion relativa -->
-      <div id="Scrach" style="position: relative;">
+      <div id="Scrach" style="position: relative; min-width: 350px;">
           @if($suerte)
           <img src="" class="user-select-none pe-none unselectable" data-src="{{ asset('assets/game/boletos') }}/Boleto{{$ticket}}$_Ganador.png" draggable="false;" (draggable)="false;" dragstart="false;" (dragstart)="false;" >
           @else

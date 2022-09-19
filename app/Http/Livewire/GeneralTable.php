@@ -154,14 +154,14 @@ class GeneralTable extends Component
                 }
             }
 
-            // Log::info('$cantSemanas');
-            // Log::info($cantSemanas);
+            Log::info('$cantSemanas');
+            Log::info($cantSemanas);
            
             $resultados = [];
 
             for ($q=1; $q <= $cantSemanas; $q++) { 
-                // Log::info('$q');
-                // Log::info($q);
+                Log::info('$q');
+                Log::info($q);
                 $index = 'Week' . $q;
                 if ($index === 'Week1') {
                     $fechaFinPost = $$index;
@@ -170,6 +170,7 @@ class GeneralTable extends Component
 
                     $filtered = $this->points->whereBetween('created_at', [$fechaInicial, $fechaFinPost])->sum('count');
                     $resultados[$index] = $filtered;
+                    break;
                 }else{
                     $indexAnt = 'Week' . $q - 1;
                     $fechaInicPost = Carbon::create($$indexAnt)->addDays(1);

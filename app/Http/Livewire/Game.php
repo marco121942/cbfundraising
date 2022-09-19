@@ -122,7 +122,8 @@ class Game extends Component
                 if (isset($partner->$premio)) {
                     $this->imgPremio = $partner->$premio;
                 }else{
-                    $this->imgPremio = null;
+                    $this->imgPremio = $partner->$tipoPremio . '1';
+                    //$this->imgPremio = null;
                 }
                 if (isset($partner->link)) {
                     $this->enlace = $partner->link;

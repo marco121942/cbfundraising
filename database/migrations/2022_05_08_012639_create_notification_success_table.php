@@ -18,6 +18,7 @@ class CreateNotificationSuccessTable extends Migration
             $table->unsignedBigInteger('notification_id');
             $table->unsignedBigInteger('success_id');
             $table->timestamps();
+
         });
     }
 

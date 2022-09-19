@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Success;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,9 +17,17 @@ class Notification extends Model
         'user_id',
         'receiver_id',
         'event_id',
+        'success',
         'view',
         'deleted_receiver',
     ];
+
+    public function getConsuccessAttribute()
+    {
+        $suceso = $this->success ? $this->success : 1;
+        return Success::find($suceso)->type;
+        
+    }
 
     public function user()
     {

@@ -15,34 +15,34 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('receiver_id');
-            $table->unsignedBigInteger('event_id');
+            $table->unsignedBigInteger('user_id')->nullable()->unsigned();
+            $table->unsignedBigInteger('receiver_id')->nullable()->unsigned();
+            $table->unsignedBigInteger('event_id')->nullable()->unsigned();
+            $table->integer('success')->default(1);
             $table->boolean('view')->default(false);
             $table->boolean('deleted_receiver')->default(false);
             
             $table->foreign('user_id')
+            ->nullable()->constrained()
               ->references('id')
               ->on('users')
               ->onDelete('cascade');
             
             $table->foreign('event_id')
+            ->nullable()->constrained()
               ->references('id')
               ->on('events')
-              ->onDelete('cascade');
+              ->cascadeOnUpdate()
+              ->nullOnDelete();
 
             $table->foreign('receiver_id')
+            ->nullable()->constrained()
               ->references('id')
-              ->on('users');
+              ->on('users')
+              ->cascadeOnUpdate()
+              ->nullOnDelete();
 
             $table->timestamps();
-            
-
-            //$table->unsignedBigInteger('id_success')->default(1);
-/*
-            $table->foreign('id_success')
-              ->references('id')
-              ->on('success');*/
               
         });
     }

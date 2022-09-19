@@ -15,71 +15,97 @@
 
               <a class="nav-link nav-icon" data-bs-toggle="dropdown" id="dnotifications">
                 <i class="bi bi-bell"></i>
-                <span class="badge bg-primary badge-number">4</span>
+                @php
+                  if(auth()->user()->hasRole('admin')){
+                      $cantidad = $notificaciones->filter(function ($noty){
+                          return $noty->deleted_receiver === 0;
+                      })->count();
+                  }else{
+                      $cantidad = $notificaciones->filter(function ($noty){
+                          return $noty->view === 0;
+                      })->count();
+                  }
+                @endphp
+                <span class="badge bg-primary badge-number">{{$cantidad}}</span>
               </a><!-- End Notification Icon -->
 
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" aria-labelledby="dnotifications">
                 <li class="dropdown-header">
-                  You have 4 new notifications
-                  <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                  You have {{$cantidad}} new notifications
+                  <a wire:click="viewAll()"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                 </li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
+                
+                @forelse($notificaciones as $notify)
+                  @if($loop->index < 4)
+                  @php
+                    $clases = '';
+                    if($notify->success === 1){
+                      $clases = 'bi bi-info-circle text-primary';
+                    }else if($notify->success === 2){
+                      $clases = 'bi bi-check-circle text-success';
+                    }else if($notify->success === 3){
+                      $clases = 'bi bi-exclamation-circle text-warning';
+                    }else{
+                      $clases = 'bi bi-x-circle text-danger';
+                    };
+                    $bgColor = '';
+                    if(auth()->user()->hasRole('admin')){
+                      if($notify->deleted_receiver === 1){
+                        $bgColor = 'background-color: #f6f9ff';
+                      }
+                    }else{
+                      if($notify->view === 1){
+                        $bgColor = 'background-color: #f6f9ff';
+                      }
+                    }
+                  @endphp
 
-                <li class="notification-item">
-                  <i class="bi bi-exclamation-circle text-warning"></i>
-                  <div>
-                    <h4>Lorem Ipsum</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
-                    <p>30 min. ago</p>
+                <li class="notification-item" style="{{$bgColor}}">
+                  <i class="{{$clases}}"></i>
+                  <div >
+                    
+                    @if(auth()->user()->hasRole('admin'))
+                      <h4 >
+                      @isset($notify->event->user->name)
+                        User {{$notify->event->user->name}},
+                      @endisset
+                        Event {{$notify->Consuccess}}
+                      </h4>
+                    @else
+                      <h4 >Event {{$notify->Consuccess}}</h4>
+                    @endif
+                    
+                    
+                    @if(!$loop->index >= 1)
+                      @isset($notify->event->title1)
+                      <h6>{{$notify->event->title1}}</h6>
+                      <p>{{$notify->event->description1}}</p>
+                      @endisset
+                    @endif
+                    <p>{{$notify->created_at}}</p>
                   </div>
                 </li>
 
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-
-                <li class="notification-item">
-                  <i class="bi bi-x-circle text-danger"></i>
-                  <div>
-                    <h4>Atque rerum nesciunt</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
-                    <p>1 hr. ago</p>
-                  </div>
-                </li>
-
+                  @else
+                    @break
+                  @endif
+                @empty
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-
-                <li class="notification-item">
-                  <i class="bi bi-check-circle text-success"></i>
-                  <div>
-                    <h4>Sit rerum fuga</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
-                    <p>2 hrs. ago</p>
-                  </div>
-                </li>
-
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-
-                <li class="notification-item">
-                  <i class="bi bi-info-circle text-primary"></i>
-                  <div>
-                    <h4>Dicta reprehenderit</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
-                    <p>4 hrs. ago</p>
-                  </div>
-                </li>
-
+                @endforelse
+                              
                 <li>
                   <hr class="dropdown-divider">
                 </li>
                 <li class="dropdown-footer">
-                  <a href="#">Show all notifications</a>
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#notificacionesModal">Show all notifications</a>
                 </li>
 
               </ul><!-- End Notification Dropdown Items -->
@@ -278,6 +304,89 @@
           </ul>
         </nav><!-- End Icons Navigation -->
     </header><!-- End Header -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="notificacionesModal" tabindex="-1" aria-labelledby="notificacionesModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="notificacionesModalLabel">Notifications</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+                <ul class="list-group">
+                @forelse($notificaciones as $notify)
+                @if($loop->index < 4)
+                @php
+                  $clases = '';
+                  if($notify->success === 1){
+                    $clases = 'bi bi-info-circle text-primary';
+                  }else if($notify->success === 2){
+                    $clases = 'bi bi-check-circle text-success';
+                  }else if($notify->success === 3){
+                    $clases = 'bi bi-exclamation-circle text-warning';
+                  }else{
+                    $clases = 'bi bi-x-circle text-danger';
+                  };
+                  $bgColor = '';
+                  if(auth()->user()->hasRole('admin')){
+                    if($notify->deleted_receiver === 1){
+                      $bgColor = 'background-color: #f6f9ff';
+                    }
+                  }else{
+                    if($notify->view === 1){
+                      $bgColor = 'background-color: #f6f9ff';
+                    }
+                  }
+                @endphp
+                
+                <li class="list-group-item list-group-flush" style="{{$bgColor}}">
+                  <i class="d-inline-block {{$clases}}"></i>
+                  <div class="d-inline-block">
+                    @if(auth()->user()->hasRole('admin'))
+                      <h4 class='d-inline-block'>
+                      @isset($notify->event->user->name)
+                        User {{$notify->event->user->name}},
+                      @endisset
+                        Event {{$notify->Consuccess}}
+                      </h4>
+                    @else
+                      <h4 class='d-inline-block'>Event {{$notify->Consuccess}}</h4>
+                    @endif
+                    @if(!$loop->index >= 1)
+                    @isset($notify->event->title1)
+                    <h6 class="d-inline-block">{{$notify->event->title1}}</h6>
+                    <p class="d-inline-block">{{$notify->event->description1}}</p>
+                    @endif
+                    @endif
+                    <p class="d-inline-block">{{$notify->created_at}}</p>
+                  </div>
+                </li>
+
+                <li class="list-group-item list-group-flush border-start-0 border-end-0">
+                  <hr class="dropdown-divider">
+                </li>
+                @else
+                @break
+                @endif
+                @empty
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                @endforelse
+                </ul>
+
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 </div>
 
 @push('js')
@@ -292,8 +401,13 @@
   <script>
     let toastsAbierto = false;
 
-    function toast(mensaje, tipo, accion) {
-      let momento = 'Just Now';
+    function toast(mensaje, tipo, accion, fecha) {
+      let momento = '';
+      if (fecha) {
+        momento = fecha;
+      }else{
+        momento = 'Just Now';
+      }
       let color = '';
       if (tipo === 'Notification') {
         color = 'bg-primary';
@@ -342,12 +456,12 @@
     }
 
     window.addEventListener('toasts', event => {
-      abrirToasts(event.detail.mensaje, event.detail.tipo, event.detail.accion);
+      abrirToasts(event.detail.mensaje, event.detail.tipo, event.detail.accion, event.detail.fecha);
       console.log('toasts');
     });
     
-    function abrirToasts(mensaje, tipo, accion){
-      var toastEl = toast(mensaje, tipo, accion);
+    function abrirToasts(mensaje, tipo, accion, fecha){
+      var toastEl = toast(mensaje, tipo, accion, fecha);
       document.getElementById('container-toasts').appendChild(toastEl);
       let myToast = new bootstrap.Toast(toastEl);
       myToast.show();

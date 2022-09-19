@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Event;
+use App\Models\Notification;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -169,6 +170,17 @@ class EditEvent extends Component
                 'shared_count' => $this->evento->shared_count,
             ]);
 
+            $notificar = Notification::create([
+                'user_id' => Auth::user()->id,
+                'receiver_id' => 1,
+                'event_id' => $this->evento->id,
+                'view' => false,
+                'success' => 3,
+                'deleted_receiver' => false,
+            ]);
+
+            session()->flash('message', 'successfully update event.');
+
         }else{
             
             Log::info('desde save evento es null');
@@ -199,7 +211,7 @@ class EditEvent extends Component
                 $ruta3 = $ruta1;
             };
             
-            Event::create([
+            $eventoNuevo = Event::create([
                 'user_id' => Auth::user()->id,
                 'slug' => $this->slug(0),
                 'duration' => $this->duration,
@@ -216,11 +228,19 @@ class EditEvent extends Component
                 'shared_count' => 0,
             ]);
             
+            $notificar = Notification::create([
+                'user_id' => Auth::user()->id,
+                'receiver_id' => 1,
+                'event_id' => $eventoNuevo->id,
+                'view' => false,
+                'success' => 1,
+                'deleted_receiver' => false,
+            ]);
+            
+            session()->flash('message', 'successfully created event.');
             
         }
-      
-      session()->flash('message', 'successfully created event.');
-      
+            
       // $this->mount();
       redirect('/editevent');
         
@@ -232,11 +252,25 @@ class EditEvent extends Component
   
     public function borrar(){
         Log::info('se borrara evento');
+        
+        $notificar = Notification::create([
+            'user_id' => Auth::user()->id,
+            'receiver_id' => 1,
+            'event_id' => $this->evento->id,
+            'view' => false,
+            'success' => 4,
+            'deleted_receiver' => false,
+        ]);
+
+        Log::info('$notificar');
+        Log::info($notificar);
+
         Event::find($this->evento->id)->delete();
         
         session()->flash('message', 'evento borrado correctamente.');
         
         Log::info($this->evento);
+
         
         $this->mount();
     }

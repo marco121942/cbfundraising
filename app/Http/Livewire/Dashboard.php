@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Event;
+use App\Models\Notification;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -171,6 +172,18 @@ class Dashboard extends Component
   
     public function borrar(){
         Log::info('se borrara evento');
+        $notificar = Notification::create([
+            'user_id' => Auth::user()->id,
+            'receiver_id' => 1,
+            'event_id' => $this->evento->id,
+            'view' => false,
+            'success' => 4,
+            'deleted_receiver' => false,
+        ]);
+
+        Log::info('$notificar');
+        Log::info($notificar);
+
         Event::find($this->evento->id)->delete();
         
         session()->flash('message', 'evento borrado correctamente.');

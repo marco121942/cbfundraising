@@ -43,10 +43,31 @@ class EventData extends Component
             'status' => 'required',
         ]);
     
-        Event::updateOrCreate(['id' => $this->event_id], [
+        $eventito = Event::updateOrCreate(['id' => $this->event_id], [
             'duration' => $this->duration,
             'status' => $this->status,
         ]);
+
+        
+        if ($this->status === 3) {
+            $suceso = 5;
+        }else if($this->status === 5){
+            $suceso = 6;
+        }else if($this->status === 1){
+            $suceso = 3;
+        }else{
+            $suceso = $this->status;
+        }
+
+        Notification::create([
+            'user_id' => $eventito->user()->id,
+            'receiver_id' => 1,
+            'event_id' => $this->event_id,
+            'view' => false,
+            'success' => $suceso,
+            'deleted_receiver' => false,
+        ]);
+
         session()->flash('message', $this->event_id ? 'event updated.' : 'event created.');
         $this->closeModalPopover();
         $this->resetCreateForm();
@@ -59,6 +80,15 @@ class EventData extends Component
         $this->event_id = $id;
         $this->duration = $event->duration;
         $this->status = $event->status;
+
+        Notification::create([
+            'user_id' => $event->user()->id,
+            'receiver_id' => 1,
+            'event_id' => $this->event_id,
+            'view' => false,
+            'success' => 3,
+            'deleted_receiver' => false,
+        ]);
             
         $this->openModalPopover();
     }

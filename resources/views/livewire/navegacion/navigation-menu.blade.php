@@ -428,7 +428,7 @@
               <div class="toast-body text-center">
                   ${mensaje}
                   <br>
-                  <a href="${accion}" class="btn-sm btn-get-started my-0 mx-auto py-1 px-2"> Go </a>
+                  <a href="${accion}" target="_blank" class="btn-sm btn-get-started my-0 mx-auto py-1 px-2"> Go </a>
               </div>
           </div>
         `;

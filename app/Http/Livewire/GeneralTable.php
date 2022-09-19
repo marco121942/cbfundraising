@@ -223,7 +223,7 @@ class GeneralTable extends Component
                 } else if ($diasHabiles === $limiteActual) {
                     break;
                 } else if ($diasHabiles > $limiteActual) {
-                    $index = 'dia' . $j + 1;
+                    $index = 'dia' . (int)$j + (int)1;
                     $$index = Carbon::create($this->evento->created_at)->addDays($limiteActual);
                     continue;
                 }

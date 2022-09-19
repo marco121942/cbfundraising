@@ -172,7 +172,8 @@ class GeneralTable extends Component
                     $resultados[$index] = $filtered;
                     break;
                 }else{
-                    $indexAnt = 'Week' . (int)$q - (int)1;
+                    $cuenta = (int)$q - (int)1;
+                    $indexAnt = 'Week' . $cuenta;
                     $fechaInicPost = Carbon::create($$indexAnt)->addDays(1);
                     $fechaFinPost = $$index;
 

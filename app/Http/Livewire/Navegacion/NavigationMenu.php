@@ -33,7 +33,9 @@ class NavigationMenu extends Component
         // $tipo = 'Notification';
         // $accion = Null;
         foreach ($paNotificar as $noty) {
-            $accion = $noty->event->title1;
+            if (isset($noty->event->slug)) {
+                $accion = url('/event') . '/' . $noty->event->slug;
+            }
             if (auth()->user()->hasRole('admin')) {
                 $mensaje = '<h6 class=""><strong>User '. $noty->event->user->name .', Event '.$noty->Consuccess.'</strong></h6><p class="">'.$noty->event->title1.'</p>';
             }else{

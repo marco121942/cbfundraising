@@ -40,7 +40,7 @@
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-share-fill"></i>
-                      </div>
+                    </div>
                       <div class="ps-3">
                           <!-- <h6>26,545</h6> -->
                           <h6>{{$shareds}}</h6>
@@ -63,7 +63,7 @@
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-hourglass-split"></i>
-                      </div>
+                    </div>
                       <div class="ps-3">
                           <!-- <h6>26,545</h6> -->
                           <h6>{{$time}} Days</h6>
@@ -122,7 +122,7 @@
                   </div>
                 </div>
 
-                </div>
+              </div>
             </div><!-- End Revenue Card -->
 
             <!-- Revenue Card -->

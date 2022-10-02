@@ -35,17 +35,17 @@ class Dashboard extends Component
             if( isset(Auth::user()->phone) ){
                 
             }else{
-                $mensaje = 'completion your profile';
+                $mensaje = 'completion your profile <br>';
                 $tipo = 'Notification';
-                $accion = route('profile.show');
+                $accion = 'href="'.route('profile.show').'" target="_blank"';
                 $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => $tipo, 'accion' => $accion]);
                 LOG::info('noPerfil');
             }
             
         }else{
-            $mensaje = 'Create an event to start the fundraiser';
+            $mensaje = 'Create an event to start the fundraiser <br>';
             $tipo = 'Notification';
-            $accion = route('editevent');
+            $accion = 'href="'.route('editevent').'" target="_blank"';
             $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => $tipo, 'accion' => $accion]);
             LOG::info('noEvent');
         }

@@ -261,12 +261,12 @@ table, td { color: #000000; } a { color: #01499d; text-decoration: underline; } 
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:40px 50px 50px;font-family:'Rubik',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #5c5c5c; line-height: 170%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;"><strong>Dear [User _Name], </strong></span></p>
+    <p style="font-size: 14px; line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;"><strong>Dear {{$userName}}, </strong></span></p>
 <p style="font-size: 14px; line-height: 170%;">&nbsp;</p>
 <p style="font-size: 14px; line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">We are so glad you found what you were looking for. We work so that you always get maximum satisfaction, we are eager to start working together for this event. Enjoy your experience and make it unique.</span></p>
 <p style="font-size: 14px; line-height: 170%;">&nbsp;</p>
 <p style="font-size: 14px; line-height: 170%;">Share your event!</p>
-<p style="font-size: 14px; line-height: 170%;"><strong>[auto_link]</strong></p>
+<p style="font-size: 14px; line-height: 170%;"><strong>{{$enlace}}</strong></p>
 <p style="font-size: 14px; line-height: 170%;">&nbsp;</p>
 <p style="font-size: 14px; line-height: 170%;">&nbsp;</p>
 <p style="font-size: 14px; line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Regards,</span></p>

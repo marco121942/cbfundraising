@@ -11,14 +11,17 @@ class EventCreate extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $userName, $enlace;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($userName, $enlace)
     {
-        //
+        $this->userName = $userName;
+        $this->enlace = $enlace;
     }
 
     /**

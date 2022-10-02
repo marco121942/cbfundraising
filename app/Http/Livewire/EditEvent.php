@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\EventCreate;
+use Illuminate\Support\Facades\Mail;
+
 use App\Models\Event;
 use App\Models\Notification;
 
@@ -236,7 +239,18 @@ class EditEvent extends Component
                 'success' => 1,
                 'deleted_receiver' => false,
             ]);
-            
+
+            $userName = Auth::user()->name;
+            $enlace = url('/event') . '/' . $this->slug(0);
+
+            $envio = Mail::to(Auth::user()->email)
+                    ->send( new EventCreate(
+                        $userName, $enlace
+                    ) );
+
+            LOG::info('$envio');
+            LOG::info($envio);
+
             session()->flash('message', 'successfully created event.');
             
         }

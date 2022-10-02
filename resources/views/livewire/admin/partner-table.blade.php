@@ -277,6 +277,8 @@
                 </div>
               </div>
             </div>
-          @endif
+        @endif
+      </div>
+    </div>
   </section>
 </main><!-- End #main -->

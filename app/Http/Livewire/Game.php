@@ -203,6 +203,5 @@ class Game extends Component
         LOG::info('$envio');
         LOG::info($envio);
 
-        // $respuesta = 'correo enviado a email: ' . $mail;
     }
 }

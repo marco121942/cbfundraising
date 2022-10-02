@@ -75,7 +75,6 @@ class NavigationMenu extends Component
     }
 
     public function send(){
-        LOG::info('sendiando');
         $name = auth()->user()->name;
         $email = auth()->user()->email;
         $remitente = auth()->user()->id;

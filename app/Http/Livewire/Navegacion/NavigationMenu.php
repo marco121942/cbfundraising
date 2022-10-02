@@ -20,6 +20,10 @@ class NavigationMenu extends Component
     public $notificaciones, $messages, $toma, $body;
     public $isModalOpen = null;
 
+    public function reiniciar(){
+        LOG::info('ya reinicie');
+        $this->mount();
+    }
 
     public function pushear(){
         if (auth()->user()->hasRole('admin')) {

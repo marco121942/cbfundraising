@@ -385,6 +385,11 @@
       @this.abrirModal(idmodal);
       console.log('se abrira el chat: '+idmodal);
     }
+    setInterval('contador()',120000);
+    function contador(){
+      @this.reiniciar();
+      setInterval('contador()',120000);
+    }
   </script>
   <script>
     let toastsAbierto = false;
@@ -405,7 +410,7 @@
       let htmlMarkup;
       if (accion){
         htmlMarkup = `
-          <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="120000000">
+          <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="120000">
               <div class="toast-header ${color} text-white">
                     <strong class="me-auto">${tipo}</strong>
                     <small>${momento}</small>
@@ -421,7 +426,7 @@
         `;
       }else{
         htmlMarkup = `
-          <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="120000000">
+          <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="120000">
               <div class="toast-header ${color} text-white">
                     <strong class="me-auto">${tipo}</strong>
                     <small>${momento}</small>

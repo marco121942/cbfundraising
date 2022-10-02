@@ -100,7 +100,7 @@
                 @endphp
               
               <li class="list-group-item list-group-flush" style="{{$bgColor}}">
-                <i class="d-inline-block {{$clases}}"></i>
+                <i class="d-inline-block"></i>
                 <div class="d-inline-block">
                   <h4 class='d-inline-block'>
                     User {{$msj->name}}

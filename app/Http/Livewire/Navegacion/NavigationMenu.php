@@ -145,6 +145,7 @@ class NavigationMenu extends Component
         foreach ($idsChat as $key) {
             Message::where('id', $key)
                     ->where('view', false)
+                    ->where('receiver_id', Auth::user()->id)
                     ->update(['view' => true]);
         }
         $this->mount();

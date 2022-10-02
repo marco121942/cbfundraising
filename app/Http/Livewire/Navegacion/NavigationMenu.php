@@ -21,7 +21,6 @@ class NavigationMenu extends Component
     public $isModalOpen = null;
 
     public function reiniciar(){
-        LOG::info('ya reinicie');
         $this->mount();
     }
 

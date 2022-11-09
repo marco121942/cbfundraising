@@ -60,7 +60,7 @@
         <!-- END: Custom CSS-->
 
         <!-- Template Main CSS File -->
-        <link href="{{ asset('assets/css/back/style.css') }}" rel="stylesheet">
+        <!-- <link href="{{ asset('assets/css/back/style.css') }}" rel="stylesheet"> -->
         @stack('css')
     </head>
     <body  class="vertical-layout vertical-menu-modern  navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="">

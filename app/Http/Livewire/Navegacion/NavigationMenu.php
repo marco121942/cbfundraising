@@ -45,13 +45,17 @@ class NavigationMenu extends Component
 
         foreach ($paNotificar as $noty) {
             $accion = null;
+            $tituloNoty1 = '';
+            if (isset($noty->event->title1)) {
+                $tituloNoty1 = $noty->event->title1;
+            }
             if (isset($noty->event->slug)) {
                 $accion = 'href="'.url('/event') . '/' . $noty->event->slug.'" target="_blank"';
             };
             if (auth()->user()->hasRole('admin')) {
-                $mensaje = '<h6 class=""><strong>User '. $noty->event->user->name .', Event '.$noty->Consuccess.'</strong></h6><p class="">'.$noty->event->title1.'</p>';
+                $mensaje = '<h6 class=""><strong>User '. $noty->event->user->name .', Event '.$noty->Consuccess.'</strong></h6><p class="">'.$tituloNoty1.'</p>';
             }else{
-                $mensaje = '<h6 class=""><strong>Event '.$noty->Consuccess.'</strong></h6><p class="">'.$noty->event->title1.'</p>';
+                $mensaje = '<h6 class=""><strong>Event '.$noty->Consuccess.'</strong></h6><p class="">'.$tituloNoty1.'</p>';
             };
             $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Notification', 'accion' => $accion, 'fecha' => $noty->created_at]);
         }

@@ -2,7 +2,7 @@
   <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">
           <li class="nav-item">
-            <a class="navbar-brand" target="_blank" href="{{ route('welcome') }}">
+            <a class="navbar-brand" target="_blank" href="{{ route('welcome') }}"> 
               <span class="brand-logo">
                 <svg
                   id="Capa_1"

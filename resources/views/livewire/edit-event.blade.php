@@ -10,7 +10,7 @@
     <h1>Edit Event</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item">Event</li>
         <li class="breadcrumb-item active">Edit Event</li>
       </ol>
@@ -136,7 +136,8 @@
                     <div class="card mb-4 py-0 text-center border" id="description">
                       <div class="card-body py-3">
                           <h6 class="h6 d-inline font-weight-bold">{{url('/event')}}/{{$evento->slug}}</h6>
-                          <a href="{{url('/event')}}/{{$evento->slug}}" target="_blank" class="btn-sm btn-get-started my-0 mx-3">Go Event</a>
+                          <br class="d-sm-block d-md-none">
+                          <a href="{{url('/event')}}/{{$evento->slug}}" target="_blank" class="btn btn-outline-warning round mx-3">Go Event</a>
                           @php
                           $eventShared = $evento;
                           @endphp
@@ -278,7 +279,8 @@
                     <div class="card mb-4 py-0 text-center border" id="description">
                       <div class="card-body py-3">
                           <h6 class="h6 d-inline font-weight-bold">{{url('/event')}}/{{$evento->slug}}</h6>
-                          <a href="{{url('/event')}}/{{$evento->slug}}" target="_blank" class="btn-sm btn-get-started my-0 mx-3">Go Event</a>
+                          <br class="d-sm-block d-md-none">
+                          <a href="{{url('/event')}}/{{$evento->slug}}" target="_blank" class="btn btn-outline-warning round mx-3">Go Event</a>
                           <x-shared-popover-button :evento="$evento"/>
                       </div>
                     </div>
@@ -288,7 +290,7 @@
                   @endif
 
                   @if($evento)
-                    <a href="https://api.whatsapp.com/send?text={{url('/l')}}/{{ Str::substr($evento->slug, -14) }}" target="_blank" id="logo" class="btn btn-get-started">Shared</a>
+                    <a href="https://api.whatsapp.com/send?text={{url('/l')}}/{{ Str::substr($evento->slug, -14) }}" target="_blank" id="logo" class="btn btn-outline-warning round mx-3">Shared</a>
                       <br>
                   @endif
                 </div>

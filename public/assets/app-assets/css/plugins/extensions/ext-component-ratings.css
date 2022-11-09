@@ -1,0 +1,77 @@
+/* $menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #fd7e14 !default;
+
+
+.sidenav-overlay {
+
+    background-color: #0d6efd;
+
+}
+
+
+$nav-component-border-color: #0d6efd !default;
+
+$swiper-bg: #0d6efd !default;
+
+
+//main menu dark
+$menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #0d6efd !default;
+
+
+
+//  -------------------------------
+//  Blank Page Bg Color
+//  -------------------------------
+
+$blank-bg-color: #0d6efd !default; */
+/* @mixin menu-theme($theme-color, $theme-bg) {
+    $main-menu-top-open-color: darken($theme-color, 10%);
+    $main-menu-top-open-hover-bg: darken($theme-bg, 6%);
+    $main-menu-top-open-head-bg: darken($theme-bg, 4%);
+
+    $main-menu-top-active-head-bg: darken($theme-bg, 4%); //$primary
+
+    $main-menu-sub-color: $theme-color;
+    $main-menu-sub-hover-color: lighten($theme-color, 4%);
+
+    $main-menu-sub-open-color: $theme-color;
+
+    color: $theme-color;
+    background: #0d6efd;
+
+    .navigation {
+      background: #0d6efd
+
+    }
+
+} */
+.jq-ry-container:not(.multi-color-ratings) .jq-ry-normal-group i,
+.jq-ry-container:not(.multi-color-ratings) .jq-ry-normal-group svg {
+  fill: #babfc7;
+}
+
+.jq-ry-container:not(.multi-color-ratings) .jq-ry-rated-group i,
+.jq-ry-container:not(.multi-color-ratings) .jq-ry-rated-group svg {
+  fill: #ff9f43;
+}
+
+.dark-layout .jq-ry-container:not(.multi-color-ratings) .jq-ry-normal-group i,
+.dark-layout .jq-ry-container:not(.multi-color-ratings) .jq-ry-normal-group svg {
+  fill: #676d7d;
+}
+
+[data-textdirection=rtl] .jq-ry-container:not(.multi-color-ratings) .jq-ry-normal-group i,
+[data-textdirection=rtl] .jq-ry-container:not(.multi-color-ratings) .jq-ry-normal-group svg {
+  fill: #ff9f43;
+}
+
+[data-textdirection=rtl] .jq-ry-container:not(.multi-color-ratings) .jq-ry-rated-group i,
+[data-textdirection=rtl] .jq-ry-container:not(.multi-color-ratings) .jq-ry-rated-group svg {
+  fill: #babfc7;
+}
+
+[data-textdirection=rtl] .dark-layout .jq-ry-container:not(.multi-color-ratings) .jq-ry-rated-group i,
+[data-textdirection=rtl] .dark-layout .jq-ry-container:not(.multi-color-ratings) .jq-ry-rated-group svg {
+  fill: #676d7d;
+}

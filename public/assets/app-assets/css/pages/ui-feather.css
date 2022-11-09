@@ -1,0 +1,94 @@
+/* $menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #fd7e14 !default;
+
+
+.sidenav-overlay {
+
+    background-color: #0d6efd;
+
+}
+
+
+$nav-component-border-color: #0d6efd !default;
+
+$swiper-bg: #0d6efd !default;
+
+
+//main menu dark
+$menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #0d6efd !default;
+
+
+
+//  -------------------------------
+//  Blank Page Bg Color
+//  -------------------------------
+
+$blank-bg-color: #0d6efd !default; */
+/* @mixin menu-theme($theme-color, $theme-bg) {
+    $main-menu-top-open-color: darken($theme-color, 10%);
+    $main-menu-top-open-hover-bg: darken($theme-bg, 6%);
+    $main-menu-top-open-head-bg: darken($theme-bg, 4%);
+
+    $main-menu-top-active-head-bg: darken($theme-bg, 4%); //$primary
+
+    $main-menu-sub-color: $theme-color;
+    $main-menu-sub-hover-color: lighten($theme-color, 4%);
+
+    $main-menu-sub-open-color: $theme-color;
+
+    color: $theme-color;
+    background: #0d6efd;
+
+    .navigation {
+      background: #0d6efd
+
+    }
+
+} */
+.icon-search-wrapper {
+  max-width: 300px;
+}
+
+.icon-search-wrapper .feather-search {
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
+#icons-container .icon-card {
+  width: 128px;
+}
+
+.icon-card {
+  border: 1px solid transparent;
+}
+
+.icon-card.active {
+  border-color: #0d6efd;
+}
+
+.icon-card.active i,
+.icon-card.active svg {
+  color: #0d6efd;
+}
+
+@media (max-width: 1024px) {
+  #icons-container .icon-card {
+    width: 126px;
+  }
+}
+@media (max-width: 768px) {
+  #icons-container .icon-card {
+    width: 131px;
+  }
+}
+@media (max-width: 414px) {
+  #icons-container .icon-card {
+    width: 110px;
+  }
+}
+@media (max-width: 375px) {
+  #icons-container .icon-card {
+    width: 150px;
+  }
+}

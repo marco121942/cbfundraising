@@ -42,18 +42,49 @@
     
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    {{--
     <!-- Vendor CSS Files -->
-    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    
     <link href="{{ asset('assets/vendor/quill/quill.snow.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
+    --}}
+    <!-- <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+   
+    <!-- BEGIN: Vendor CSS-->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/vendors.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/charts/apexcharts.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/extensions/toastr.min.css') }}">
+        <!-- END: Vendor CSS-->
+
+        <!-- BEGIN: Theme CSS-->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/bootstrap.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/bootstrap-extended.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/colors.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/components.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/themes/dark-layout.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/themes/bordered-layout.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/themes/semi-dark-layout.css') }}">
+
+        <!-- BEGIN: Page CSS-->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/menu/menu-types/horizontal-menu.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/pages/app-chat.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/pages/app-chat-list.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/pages/dashboard-ecommerce.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/plugins/charts/chart-apex.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/plugins/extensions/ext-component-toastr.css') }}">
+        <!-- END: Page CSS-->
+
+        <!-- BEGIN: Custom CSS-->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/custom.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/style.css') }}">
+        <!-- END: Custom CSS-->
 
     <!-- Template Main CSS File -->
-    <link href="{{ asset('assets/css/back/style.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('assets/css/back/style.css') }}" rel="stylesheet"> -->
 
     @stack('css')
 
@@ -61,7 +92,7 @@
 <body>
     
 @yield('content')
-
+{{--
         <!-- Vendor JS Files -->
   <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
   <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
@@ -71,9 +102,46 @@
   <script src="{{ asset('assets/vendor/chart.js/chart.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
+--}}
 
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <!-- END: Footer-->
+
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="{{ asset('assets/app-assets/vendors/js/vendors.min.js') }}"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{ asset('assets/app-assets/vendors/js/ui/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('assets/app-assets/vendors/js/charts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="{{ asset('assets/app-assets/js/core/app-menu.js') }}"></script>
+    <script src="{{ asset('assets/app-assets/js/core/app.js') }}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{{ asset('assets/app-assets/js/scripts/pages/dashboard-ecommerce.js') }}"></script>
+    <!-- END: Page JS-->
+    
+        <!-- <script src="{{ asset('assets/js/back/main.js') }}"></script> -->
+        @stack('js')
+    <script>
+        $(window).on('load', function() {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
+    </script>
   <!-- Template Main JS File -->
-  <script src="{{ asset('assets/js/back/main.js') }}"></script>
+  <!-- <script src="{{ asset('assets/js/back/main.js') }}"></script> -->
 
     @stack('js')
     

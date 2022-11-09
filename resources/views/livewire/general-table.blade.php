@@ -4,7 +4,7 @@
       <h1>Your Points</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Home</li>
           <li class="breadcrumb-item">Your Points</li>
           <li class="breadcrumb-item active">General Table</li>
         </ol>

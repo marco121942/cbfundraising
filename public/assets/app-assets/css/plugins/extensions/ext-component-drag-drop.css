@@ -1,0 +1,94 @@
+/* $menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #fd7e14 !default;
+
+
+.sidenav-overlay {
+
+    background-color: #0d6efd;
+
+}
+
+
+$nav-component-border-color: #0d6efd !default;
+
+$swiper-bg: #0d6efd !default;
+
+
+//main menu dark
+$menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #0d6efd !default;
+
+
+
+//  -------------------------------
+//  Blank Page Bg Color
+//  -------------------------------
+
+$blank-bg-color: #0d6efd !default; */
+/* @mixin menu-theme($theme-color, $theme-bg) {
+    $main-menu-top-open-color: darken($theme-color, 10%);
+    $main-menu-top-open-hover-bg: darken($theme-bg, 6%);
+    $main-menu-top-open-head-bg: darken($theme-bg, 4%);
+
+    $main-menu-top-active-head-bg: darken($theme-bg, 4%); //$primary
+
+    $main-menu-sub-color: $theme-color;
+    $main-menu-sub-hover-color: lighten($theme-color, 4%);
+
+    $main-menu-sub-open-color: $theme-color;
+
+    color: $theme-color;
+    background: #0d6efd;
+
+    .navigation {
+      background: #0d6efd
+
+    }
+
+} */
+.draggable {
+  cursor: grab;
+}
+
+.gu-unselectable .draggable {
+  cursor: grabbing;
+}
+
+#multiple-list-group-a,
+#multiple-list-group-b {
+  min-height: 5.714rem;
+}
+
+#dd-with-handle .list-group {
+  min-height: 5.714rem;
+}
+
+#dd-with-handle .list-group .handle {
+  padding: 0 5px;
+  margin-right: 5px;
+  background-color: rgba(34, 41, 47, 0.1);
+  cursor: move;
+  font-size: 1.2rem;
+}
+
+.gu-mirror .card {
+  margin: 0 1rem;
+}
+
+.gu-mirror .handle {
+  padding: 0 5px;
+  margin-right: 5px;
+  background-color: rgba(34, 41, 47, 0.1);
+  cursor: move;
+  font-size: 1.2rem;
+}
+
+.dark-layout .gu-mirror {
+  color: #b4b7bd;
+}
+
+.dark-layout .gu-mirror:not(.badge):not([class*=col-]) {
+  background-color: #283046;
+  border-color: #3b4253;
+  box-shadow: 0 4px 24px 0 rgba(34, 41, 47, 0.24);
+}

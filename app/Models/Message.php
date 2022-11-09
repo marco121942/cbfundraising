@@ -30,7 +30,10 @@ class Message extends Model
             $usuario = User::find($this->remitter_id);
             if ($usuario->hasRole('org')) {
                 return true;
-            }else{
+            }elseif($usuario->hasRole('admin')) {
+                return true;
+            }
+            else{
                 return false;
             }
         }else{

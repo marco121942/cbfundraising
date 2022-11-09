@@ -1,8 +1,8 @@
 @props(['notificaciones', 'mensajes'])
 <div >
-  <div class="modal fade" id="notificacionesModal" tabindex="-1" aria-labelledby="notificacionesModalLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-dialog-scrollable modal-xl">
-      <div class="modal-content">
+  <div id="notificacionesModal" tabindex="4000" aria-labelledby="notificacionesModalLabel" class="modal fade show" data-bs-backdrop="false" data-bs-keyboard="true" aria-hidden="false" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-dialog-scrollable modal-lg shadow">
+      <div class="modal-content border shadow">
         <div class="modal-header">
           <h3 class="modal-title" id="notificacionesModalLabel">Notifications</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -22,21 +22,27 @@
                 }else{
                   $clases = 'bi bi-x-circle text-danger';
                 };
-                $bgColor = '';
+                $bgColor = 'bg-light-primary';
                 if(auth()->user()->hasRole('admin')){
                   if($notify->deleted_receiver === 1){
-                    $bgColor = 'background-color: #f6f9ff';
+                    $bgColor = '';
                   }
                 }else{
                   if($notify->view === 1){
-                    $bgColor = 'background-color: #f6f9ff';
+                    $bgColor = '';
                   }
                 }
               @endphp
             
-            <li class="list-group-item list-group-flush" style="{{$bgColor}}">
-              <i class="d-inline-block {{$clases}}"></i>
-              <div class="d-inline-block">
+            <li class="list-group-item list-group-flush d-flex align-items-start {{$bgColor}}">
+              <div class="me-1">
+                <div class="avatar bg-light-success">
+                  <div class="avatar-content fs-1">
+                    <i class="{{$clases}}"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-grow-1">
                 @if(auth()->user()->hasRole('admin'))
                   <h4 class='d-inline-block'>
                   @isset($notify->event->user->name)
@@ -73,9 +79,9 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="mensajesModal" tabindex="-1" aria-labelledby="mensajesModalLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-dialog-scrollable modal-xl">
-      <div class="modal-content">
+  <div id="mensajesModal" tabindex="4000" aria-labelledby="mensajesModalLabel" class="modal fade show" data-bs-backdrop="false" data-bs-keyboard="true" aria-hidden="false" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-dialog-scrollable modal-lg shadow">
+      <div class="modal-content border shadow">
         <div class="modal-header">
           <h3 class="modal-title" id="mensajesModalLabel">Message's</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -84,24 +90,29 @@
             <ul class="list-group">
               @forelse($mensajes as $msj)
                 @php
-                  $bgColor = '';
-                  
+                  $bgColor = 'bg-light-primary';
+                  $icono = 'bi bi-envelope-fill';
                   if($msj->view == true){
-                    $bgColor = 'background-color: #f6f9ff';
+                    $bgColor = '';
+                    $icono = 'bi bi-envelope-open-fill';
                   }
-                  
                   $action = false;
-                  
                   if(isset($msj->remitter_id)){
                     $action = true;
                   }else{
                     $action = false;
                   }
-                @endphp
+                @endphp 
               
-              <li class="list-group-item list-group-flush" style="{{$bgColor}}">
-                <i class="d-inline-block"></i>
-                <div class="d-inline-block">
+              <li class="list-group-item list-group-flush d-flex align-items-start {{$bgColor}}">
+                <div class="me-1">
+                  <div class="avatar bg-light-success">
+                      <div class="avatar-content fs-1">
+                        <i class="{{$icono}}"></i>
+                      </div>
+                  </div>
+                </div>
+                <div class="flex-grow-1">
                   <h4 class='d-inline-block'>
                     User {{$msj->name}}
                   </h4> | 

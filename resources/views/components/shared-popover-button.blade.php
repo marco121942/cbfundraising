@@ -20,15 +20,15 @@
 
   <!-- data-bs-trigger="focus" data-bs-custom-class="custom-popover" -->
   @if( $normal === true )
-<div class="p-0 m-0 text-center d-inline-block">
-  <a tabindex="0"  data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-html="true" {{ $attributes->merge(['class' => 'ppverok btn btn-get-started text-center fs-6 p-2 px-4 my-0 d-flex align-items-center justify-content-center']) }}><span class="my-auto py-auto mr-2">Shared</span><i class="bi bi-share-fill fs-4"></i></a>
+<div class="p-0 m-0 mx-auto text-center d-inline-block">
+  <a tabindex="0"  data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-html="true" {{ $attributes->merge(['class' => 'ppverok btn btn-outline-warning round mx-auto']) }}><span class="my-auto py-auto mr-2 text-success">Shared</span><i class="bi bi-share-fill fs-4"></i></a>
   @else
-  @if( $block === true )
-<div class="p-0 m-0 text-center d-inline-block">
-  @else
-<div class="p-0 m-0 text-center d-inline-block col-md-3">
-  @endif
-  <a tabindex="0"  data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-html="true" {{ $attributes->merge(['class' => 'ppverok btn boton text-center px-auto py-1 my-0 mx-auto d-flex align-items-center justify-content-center']) }}><span class="my-auto py-auto mr-2">Shared</span><i class="bi bi-share-fill"></i></a>
+    @if( $block === true )
+      <div class="p-0 m-0 text-center d-inline-block">
+    @else
+      <div class="p-0 m-0 text-center d-inline-block col-md-3">
+    @endif
+    <a tabindex="0"  data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-html="true" {{ $attributes->merge(['class' => 'ppverok btn boton text-center px-auto py-1 my-0 mx-auto d-flex align-items-center justify-content-center']) }}><span class="my-auto py-auto mr-2">Shared</span><i class="bi bi-share-fill"></i></a>
   @endif
 
   <div id="popover_html" style="display: none;">

@@ -1,0 +1,193 @@
+/* $menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #fd7e14 !default;
+
+
+.sidenav-overlay {
+
+    background-color: #0d6efd;
+
+}
+
+
+$nav-component-border-color: #0d6efd !default;
+
+$swiper-bg: #0d6efd !default;
+
+
+//main menu dark
+$menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #0d6efd !default;
+
+
+
+//  -------------------------------
+//  Blank Page Bg Color
+//  -------------------------------
+
+$blank-bg-color: #0d6efd !default; */
+/* @mixin menu-theme($theme-color, $theme-bg) {
+    $main-menu-top-open-color: darken($theme-color, 10%);
+    $main-menu-top-open-hover-bg: darken($theme-bg, 6%);
+    $main-menu-top-open-head-bg: darken($theme-bg, 4%);
+
+    $main-menu-top-active-head-bg: darken($theme-bg, 4%); //$primary
+
+    $main-menu-sub-color: $theme-color;
+    $main-menu-sub-hover-color: lighten($theme-color, 4%);
+
+    $main-menu-sub-open-color: $theme-color;
+
+    color: $theme-color;
+    background: #0d6efd;
+
+    .navigation {
+      background: #0d6efd
+
+    }
+
+} */
+/* $menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #fd7e14 !default;
+
+
+.sidenav-overlay {
+
+    background-color: #0d6efd;
+
+}
+
+
+$nav-component-border-color: #0d6efd !default;
+
+$swiper-bg: #0d6efd !default;
+
+
+//main menu dark
+$menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #0d6efd !default;
+
+
+
+//  -------------------------------
+//  Blank Page Bg Color
+//  -------------------------------
+
+$blank-bg-color: #0d6efd !default; */
+/* @mixin menu-theme($theme-color, $theme-bg) {
+    $main-menu-top-open-color: darken($theme-color, 10%);
+    $main-menu-top-open-hover-bg: darken($theme-bg, 6%);
+    $main-menu-top-open-head-bg: darken($theme-bg, 4%);
+
+    $main-menu-top-active-head-bg: darken($theme-bg, 4%); //$primary
+
+    $main-menu-sub-color: $theme-color;
+    $main-menu-sub-hover-color: lighten($theme-color, 4%);
+
+    $main-menu-sub-open-color: $theme-color;
+
+    color: $theme-color;
+    background: #0d6efd;
+
+    .navigation {
+      background: #0d6efd
+
+    }
+
+} */
+.chat-app-window .user-chats {
+  background-color: #f2f0f7;
+  padding: 1rem;
+  position: relative;
+  height: calc(100% - 65px - 65px);
+}
+
+.chat-app-window .user-chats .avatar img {
+  border: 2px solid #fff;
+}
+
+.chat-app-window .active-chat {
+  height: inherit;
+}
+
+.chat-app-window .active-chat .chat-header {
+  display: flex;
+  justify-content: space-between;
+  height: 65px;
+  background-color: #fff;
+  padding: 0 1rem;
+  border-bottom: 1px solid #ebe9f1;
+}
+
+.chat-app-window .chats .chat-avatar {
+  float: right;
+}
+
+.chat-app-window .chats .chat-body {
+  display: block;
+  margin: 10px 30px 0 0;
+  overflow: hidden;
+}
+
+.chat-app-window .chats .chat-body .chat-content {
+  float: right;
+  padding: 0.7rem 1rem;
+  margin: 0 1rem 10px 0;
+  clear: both;
+  color: #fff;
+  background-image: linear-gradient(80deg, #0d6efd, #408cfd);
+  border-radius: 0.357rem;
+  box-shadow: 0 4px 8px 0 rgba(34, 41, 47, 0.12);
+  max-width: 75%;
+}
+
+.chat-app-window .chats .chat-body .chat-content p {
+  margin: 0;
+}
+
+.chat-app-window .chats .chat-left .chat-avatar {
+  float: left;
+}
+
+.chat-app-window .chats .chat-left .chat-body .chat-content {
+  float: left;
+  margin: 0 0 10px 1rem;
+  color: #6e6b7b;
+  background: none;
+  background-color: white;
+}
+
+.chat-app-window .chat-app-form {
+  height: 65px;
+  padding: 0 1rem;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ebe9f1;
+}
+
+.chat-widget .card-header {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.chat-widget .chat-app-window .user-chats {
+  background-color: #f8f8f8;
+  height: 390px;
+}
+
+.chat-widget .chat-app-window .chat-app-form {
+  border-top: 0;
+  border-bottom-left-radius: 0.357rem;
+  border-bottom-right-radius: 0.357rem;
+  height: 56px;
+}
+
+.chat-widget .chat-app-window .chat-app-form .input-group-text,
+.chat-widget .chat-app-window .chat-app-form .message {
+  border: 0;
+  padding-left: 0;
+}
+
+.chat-widget .chat-app-window .chat-app-form .input-group:not(.bootstrap-touchspin):focus-within {
+  box-shadow: none;
+}

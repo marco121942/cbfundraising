@@ -1,0 +1,128 @@
+/* $menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #fd7e14 !default;
+
+
+.sidenav-overlay {
+
+    background-color: #0d6efd;
+
+}
+
+
+$nav-component-border-color: #0d6efd !default;
+
+$swiper-bg: #0d6efd !default;
+
+
+//main menu dark
+$menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #0d6efd !default;
+
+
+
+//  -------------------------------
+//  Blank Page Bg Color
+//  -------------------------------
+
+$blank-bg-color: #0d6efd !default; */
+/* @mixin menu-theme($theme-color, $theme-bg) {
+    $main-menu-top-open-color: darken($theme-color, 10%);
+    $main-menu-top-open-hover-bg: darken($theme-bg, 6%);
+    $main-menu-top-open-head-bg: darken($theme-bg, 4%);
+
+    $main-menu-top-active-head-bg: darken($theme-bg, 4%); //$primary
+
+    $main-menu-sub-color: $theme-color;
+    $main-menu-sub-hover-color: lighten($theme-color, 4%);
+
+    $main-menu-sub-open-color: $theme-color;
+
+    color: $theme-color;
+    background: #0d6efd;
+
+    .navigation {
+      background: #0d6efd
+
+    }
+
+} */
+.shepherd-element {
+  border-radius: 0.357rem;
+  width: 350px;
+}
+
+.shepherd-element[data-popper-placement=bottom] {
+  margin-top: 1rem !important;
+}
+
+.shepherd-element[data-popper-placement=bottom] .shepherd-arrow:before {
+  background-color: #0d6efd !important;
+}
+
+.shepherd-element[data-popper-placement=top] {
+  margin-bottom: 1rem !important;
+}
+
+.shepherd-element[data-popper-placement=left] {
+  margin-right: 1rem !important;
+}
+
+.shepherd-element[data-popper-placement=right] {
+  margin-left: 1rem !important;
+}
+
+.shepherd-element .shepherd-content {
+  border-radius: 0.357rem;
+}
+
+.shepherd-element .shepherd-content .shepherd-header {
+  background-color: #0d6efd;
+  padding: 0.38rem 1.2rem;
+  border-radius: 0.357rem 0.357rem 0 0;
+}
+
+.shepherd-element .shepherd-content .shepherd-header .shepherd-title {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.shepherd-element .shepherd-content .shepherd-header .shepherd-cancel-icon {
+  color: #fff;
+  font-size: 1.7rem;
+}
+
+.shepherd-element .shepherd-content .shepherd-header .shepherd-cancel-icon:focus {
+  outline: none;
+}
+
+.shepherd-element .shepherd-content .shepherd-text {
+  color: #6e6b7b;
+  padding: 0.8rem 1.2rem;
+}
+
+.shepherd-element .shepherd-content .shepherd-footer {
+  padding: 0 1.2rem 1rem;
+  justify-content: space-between;
+}
+
+.shepherd-element .shepherd-content .shepherd-footer .shepherd-button {
+  padding: 0.5rem 1.3rem;
+}
+
+@media (max-width: 575.98px) {
+  .shepherd-element {
+    width: 300px;
+  }
+}
+.dark-layout .shepherd-element {
+  background-color: #283046;
+}
+
+.dark-layout .shepherd-element:not([data-popper-placement=bottom]) .shepherd-arrow:before {
+  background-color: #283046;
+}
+
+.dark-layout .shepherd-element .shepherd-content .shepherd-text {
+  color: #b4b7bd;
+}

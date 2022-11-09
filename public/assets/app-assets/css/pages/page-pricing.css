@@ -1,0 +1,125 @@
+/* $menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #fd7e14 !default;
+
+
+.sidenav-overlay {
+
+    background-color: #0d6efd;
+
+}
+
+
+$nav-component-border-color: #0d6efd !default;
+
+$swiper-bg: #0d6efd !default;
+
+
+//main menu dark
+$menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #0d6efd !default;
+
+
+
+//  -------------------------------
+//  Blank Page Bg Color
+//  -------------------------------
+
+$blank-bg-color: #0d6efd !default; */
+/* @mixin menu-theme($theme-color, $theme-bg) {
+    $main-menu-top-open-color: darken($theme-color, 10%);
+    $main-menu-top-open-hover-bg: darken($theme-bg, 6%);
+    $main-menu-top-open-head-bg: darken($theme-bg, 4%);
+
+    $main-menu-top-active-head-bg: darken($theme-bg, 4%); //$primary
+
+    $main-menu-sub-color: $theme-color;
+    $main-menu-sub-hover-color: lighten($theme-color, 4%);
+
+    $main-menu-sub-open-color: $theme-color;
+
+    color: $theme-color;
+    background: #0d6efd;
+
+    .navigation {
+      background: #0d6efd
+
+    }
+
+} */
+.pricing-card .card.popular {
+  border: 1px solid #0d6efd;
+}
+
+.pricing-card .list-group-circle {
+  font-weight: 500;
+  color: #5e5873;
+}
+
+.pricing-card .annual-plan {
+  margin-bottom: 1.7rem;
+}
+
+.pricing-card .annual-plan .plan-price sup {
+  top: -1.5rem;
+  left: 0.2rem;
+}
+
+.pricing-card .annual-plan .plan-price span {
+  font-size: 3.5rem;
+  line-height: 0.8;
+}
+
+.pricing-card .annual-plan .plan-price sub {
+  bottom: 0;
+  right: 0.14rem;
+}
+
+.pricing-card .annual-plan .annual-pricing {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+.pricing-free-trial {
+  height: 16.71rem;
+  background-color: rgba(186, 191, 199, 0.12);
+  margin-right: -2rem;
+  margin-left: -2rem;
+  margin-top: 7.5rem;
+  margin-bottom: 6.3rem;
+}
+
+.pricing-free-trial .row {
+  margin: 0;
+}
+
+.pricing-free-trial .pricing-trial-content {
+  padding: 0 1rem;
+}
+
+.pricing-free-trial .pricing-trial-content img {
+  position: relative;
+  top: -3.1rem;
+}
+
+@media (max-width: 767.98px) {
+  .pricing-free-trial {
+    height: auto;
+  }
+  .pricing-free-trial .pricing-trial-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .pricing-free-trial .pricing-trial-content .pricing-trial-img {
+    top: 0;
+    margin-top: 2rem;
+    height: 150px;
+  }
+}
+@media (max-width: 575.98px) {
+  .pricing-free-trial {
+    margin-right: -1.2rem;
+    margin-left: -1.2rem;
+  }
+}

@@ -1,0 +1,125 @@
+/* $menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #fd7e14 !default;
+
+
+.sidenav-overlay {
+
+    background-color: #0d6efd;
+
+}
+
+
+$nav-component-border-color: #0d6efd !default;
+
+$swiper-bg: #0d6efd !default;
+
+
+//main menu dark
+$menu-dark-color: #0d6efd !default;
+$menu-dark-bg-color: #0d6efd !default;
+
+
+
+//  -------------------------------
+//  Blank Page Bg Color
+//  -------------------------------
+
+$blank-bg-color: #0d6efd !default; */
+/* @mixin menu-theme($theme-color, $theme-bg) {
+    $main-menu-top-open-color: darken($theme-color, 10%);
+    $main-menu-top-open-hover-bg: darken($theme-bg, 6%);
+    $main-menu-top-open-head-bg: darken($theme-bg, 4%);
+
+    $main-menu-top-active-head-bg: darken($theme-bg, 4%); //$primary
+
+    $main-menu-sub-color: $theme-color;
+    $main-menu-sub-hover-color: lighten($theme-color, 4%);
+
+    $main-menu-sub-open-color: $theme-color;
+
+    color: $theme-color;
+    background: #0d6efd;
+
+    .navigation {
+      background: #0d6efd
+
+    }
+
+} */
+/********* CONTEXT MENU *********/
+.context-menu-list {
+  margin: 0;
+  padding: 0.5rem 0;
+  border-radius: 0.357rem;
+  border: 1px solid rgba(34, 41, 47, 0.05);
+  box-shadow: 0 5px 25px rgba(34, 41, 47, 0.1);
+  min-width: 10rem;
+}
+
+.context-menu-list .context-menu-item {
+  padding: 0.65rem 1.28rem;
+  color: #6e6b7b;
+}
+
+.context-menu-list .context-menu-item.context-menu-submenu:after {
+  border-color: transparent transparent transparent #6e6b7b;
+}
+
+.context-menu-list .context-menu-item.context-menu-hover, .context-menu-list .context-menu-item:hover, .context-menu-list .context-menu-item:focus {
+  background-color: rgba(13, 110, 253, 0.12) !important;
+  color: #0d6efd;
+}
+
+.context-menu-list .context-menu-item.context-menu-hover.context-menu-submenu:after, .context-menu-list .context-menu-item:hover.context-menu-submenu:after, .context-menu-list .context-menu-item:focus.context-menu-submenu:after {
+  border-color: transparent transparent transparent #0d6efd !important;
+}
+
+.context-menu-list .context-menu-item:focus {
+  outline: 0;
+}
+
+.dark-layout .context-menu-list {
+  background-color: #161d31;
+  border-color: #3b4253;
+}
+
+.dark-layout .context-menu-list .context-menu-item {
+  background-color: #161d31;
+}
+
+.dark-layout .context-menu-list .context-menu-item span {
+  color: #b4b7bd;
+}
+
+.dark-layout .context-menu-list .context-menu-item.context-menu-hover > span {
+  color: #0d6efd;
+}
+
+.dark-layout .context-menu-list .context-menu-item.context-menu-submenu:after {
+  border-color: transparent transparent transparent #b4b7bd;
+}
+
+[data-textdirection=rtl] .context-menu-list {
+  z-index: 1031 !important;
+}
+
+[data-textdirection=rtl] .context-menu-list .context-menu-item.context-menu-submenu:after {
+  transform: rotate(180deg);
+  top: 1.2rem;
+  right: 1rem;
+  left: auto;
+  border-color: transparent #6e6b7b transparent transparent;
+}
+
+[data-textdirection=rtl] .context-menu-list .context-menu-item.context-menu-hover.context-menu-submenu:after {
+  border-color: transparent #0d6efd transparent transparent !important;
+}
+
+[data-textdirection=rtl] .context-menu-list .context-menu-item > .context-menu-list {
+  left: 100%;
+  margin-left: 0;
+}
+
+[data-textdirection=rtl] .dark-layout .context-menu-list .context-menu-item.context-menu-submenu:after {
+  border-color: transparent #b4b7bd transparent transparent;
+}

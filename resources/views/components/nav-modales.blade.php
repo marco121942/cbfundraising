@@ -7,7 +7,7 @@
           <h3 class="modal-title" id="notificacionesModalLabel">Notifications</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body bg-light">
           <ul class="list-group">
           @forelse($notificaciones as $notify)
             
@@ -63,11 +63,11 @@
               </div>
             </li>
 
-            <li class="list-group-item list-group-flush border-start-0 border-end-0">
+            <li class="list-group-item list-group-flush border-start-0 border-end-0 bg-light">
               <hr class="dropdown-divider">
             </li>
           @empty
-            <li>
+            <li class="list-group-item list-group-flush border-start-0 border-end-0 bg-light">
               <hr class="dropdown-divider">
             </li>
           @endforelse
@@ -86,7 +86,7 @@
           <h3 class="modal-title" id="mensajesModalLabel">Message's</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body bg-light">
             <ul class="list-group">
               @forelse($mensajes as $msj)
                 @php
@@ -137,12 +137,12 @@
                 </div>
               </li>
 
-              <li class="list-group-item list-group-flush border-start-0 border-end-0">
+              <li class="list-group-item list-group-flush border-start-0 border-end-0 bg-light">
                 <hr class="dropdown-divider">
               </li>
               
               @empty
-              <li>
+              <li class="list-group-item list-group-flush border-start-0 border-end-0 bg-light">
                 <hr class="dropdown-divider">
               </li>
               @endforelse

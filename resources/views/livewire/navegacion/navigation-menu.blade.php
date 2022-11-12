@@ -381,7 +381,7 @@
               <h5 class="modal-title">Chat</h5>
               <button type="button" class="btn-close" aria-label="Close" wire:click="closeModalPopover()"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body bg-light">
               <div class="chat-application">
                 <div class="content-area-wrapper container-xxl p-0">
                 
@@ -454,8 +454,7 @@
                   </div>
                 
                 </div>
-              </div>
-              
+              </div>              
             </div>
           </div>
         </div>

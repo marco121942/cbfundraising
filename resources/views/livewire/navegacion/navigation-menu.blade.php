@@ -386,7 +386,7 @@
                 <div class="content-area-wrapper container-xxl p-0">
                 
                   <div class="content-wrapper container-xxl p-0">
-                    <div class="content-body">
+                    <div class="content-body bg-light">
                 
                       <!-- Main chat area -->
                       <section class="chat-app-window">
@@ -439,13 +439,13 @@
                           </div>
                         </div>
                       </section>
-                      <form class="chat-app-form" wire:submit.prevent="send()">
+                      <form class="chat-app-form bg-light" wire:submit.prevent="send()">
                         <div class="col-12">
                           <label for="body" class="form-label">Response</label>
                           <textarea class="form-control" name="body" id="body" rows="3" wire:model.defer='body' aria-describedby="bodyHelp"></textarea>
                           <div id="bodyHelp" class="form-text">Enter the Response's Information's.</div>
                         </div>
-                        <div class="modal-footer pt-2 pb-0">
+                        <div class="modal-footer pt-2 pb-0 bg-light">
                           <button type="submit" wire:loading.class="disabled" wire:loading.attr="disabled" class="btn btn-primary col-6 col-md-4 mx-auto">Send</button>
                           <button type="button" class="btn btn-secondary" wire:click="closeModalPopover()" >Close</button>
                         </div>

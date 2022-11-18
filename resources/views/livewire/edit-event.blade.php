@@ -1,10 +1,12 @@
 @section('title', 'Edit Event')
 <main id="main" class="main">
   @if (session()->has('message'))
-    <div class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-5" role="alert" style="z-index: 2000">
-      <strong>{{ session('message') }}</strong>
+  <div class="position-relative">
+    <div class="alert alert-success alert-dismissible fade show position-fixed end-0 mr-5 p-1" role="alert" style="z-index: 2000">
+      <strong class="mr-4">{{ session('message') }}</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+  </div>
   @endif
   <div class="pagetitle">
     <h1>Edit Event</h1>
@@ -144,9 +146,9 @@
                           <x-shared-popover-button :evento="$eventShared"/>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-get-started" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Save event</button>
+                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Save event</button>
                   @else
-                    <button type="submit" class="btn btn-get-started" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Create event</button>
+                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Create event</button>
                   @endif
 
                 </div>
@@ -284,9 +286,9 @@
                           <x-shared-popover-button :evento="$evento"/>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-get-started" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Save event</button>
+                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Save event</button>
                   @else
-                    <button type="submit" class="btn btn-get-started" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Create event</button>
+                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Create event</button>
                   @endif
 
                   @if($evento)

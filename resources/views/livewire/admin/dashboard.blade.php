@@ -1,6 +1,13 @@
 @section('title', 'Dashboard')
 <main id="main" class="main">
-
+  @if (session()->has('message'))
+  <div class="position-relative">
+    <div class="alert alert-success alert-dismissible fade show position-fixed end-0 mr-5 p-1" role="alert" style="z-index: 2000">
+      <strong class="mr-4">{{ session('message') }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  @endif
   <div class="pagetitle px-1">
     <h1>Dashboard</h1>
     <nav>

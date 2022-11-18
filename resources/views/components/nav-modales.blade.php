@@ -2,12 +2,12 @@
 <div >
   <div id="notificacionesModal" tabindex="4000" aria-labelledby="notificacionesModalLabel" class="modal fade show" data-bs-backdrop="false" data-bs-keyboard="true" aria-hidden="false" role="dialog" aria-modal="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-dialog-scrollable modal-lg shadow">
-      <div class="modal-content border shadow">
+      <div class="modal-content border shadow" style="background-color: #fff">
         <div class="modal-header">
           <h3 class="modal-title" id="notificacionesModalLabel">Notifications</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body bg-light">
+        <div class="modal-body" style="background-color: #fff">
           <ul class="list-group">
           @forelse($notificaciones as $notify)
             
@@ -25,11 +25,11 @@
                 $bgColor = 'bg-light-primary';
                 if(auth()->user()->hasRole('admin')){
                   if($notify->deleted_receiver === 1){
-                    $bgColor = '';
+                    $bgColor = 'bg-light';
                   }
                 }else{
                   if($notify->view === 1){
-                    $bgColor = '';
+                    $bgColor = 'bg-light';
                   }
                 }
               @endphp
@@ -42,32 +42,32 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-grow-1">
+              <div class="flex-grow-1 text-muted">
                 @if(auth()->user()->hasRole('admin'))
-                  <h4 class='d-inline-block'>
+                  <h4 class='d-inline-block text-muted'>
                   @isset($notify->event->user->name)
                     User {{$notify->event->user->name}},
                   @endisset
                     Event {{$notify->Consuccess}}
                   </h4> | 
                 @else
-                  <h4 class='d-inline-block'>Event {{$notify->Consuccess}}</h4> | 
+                  <h4 class='d-inline-block text-muted'>Event {{$notify->Consuccess}}</h4> | 
                 @endif
                 @if(!$loop->index >= 1)
                 @isset($notify->event->title1)
-                <h6 class="d-inline-block">{{$notify->event->title1}}</h6> | 
-                <p class="d-inline-block">{{$notify->event->description1}}</p> | 
+                <h6 class="d-inline-block text-muted">{{$notify->event->title1}}</h6> | 
+                <p class="d-inline-block text-muted">{{$notify->event->description1}}</p> | 
                 @endisset
                 @endif
-                <p class="d-inline-block">{{$notify->created_at}}</p>
+                <p class="d-inline-block text-muted">{{$notify->created_at}}</p>
               </div>
             </li>
 
-            <li class="list-group-item list-group-flush border-start-0 border-end-0 bg-light">
+            <li class="list-group-item list-group-flush border-start-0 border-end-0" style="background-color: #fff">
               <hr class="dropdown-divider">
             </li>
           @empty
-            <li class="list-group-item list-group-flush border-start-0 border-end-0 bg-light">
+            <li class="list-group-item list-group-flush border-start-0 border-end-0" style="background-color: #fff">
               <hr class="dropdown-divider">
             </li>
           @endforelse
@@ -81,19 +81,19 @@
   </div>
   <div id="mensajesModal" tabindex="4000" aria-labelledby="mensajesModalLabel" class="modal fade show" data-bs-backdrop="false" data-bs-keyboard="true" aria-hidden="false" role="dialog" aria-modal="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-dialog-scrollable modal-lg shadow">
-      <div class="modal-content border shadow">
+      <div class="modal-content border shadow" style="background-color: #fff">
         <div class="modal-header">
           <h3 class="modal-title" id="mensajesModalLabel">Message's</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body bg-light">
+        <div class="modal-body" style="background-color: #fff">
             <ul class="list-group">
               @forelse($mensajes as $msj)
                 @php
                   $bgColor = 'bg-light-primary';
                   $icono = 'bi bi-envelope-fill';
                   if($msj->view == true){
-                    $bgColor = '';
+                    $bgColor = 'bg-light';
                     $icono = 'bi bi-envelope-open-fill';
                   }
                   $action = false;
@@ -112,12 +112,12 @@
                       </div>
                   </div>
                 </div>
-                <div class="flex-grow-1">
-                  <h4 class='d-inline-block'>
+                <div class="flex-grow-1 text-muted">
+                  <h4 class='d-inline-block text-muted'>
                     User {{$msj->name}}
                   </h4> | 
-                  <p class="d-inline-block">{{$msj->body}}</p> | 
-                  <p class="d-inline-block">{{$msj->created_at}}</p> |
+                  <p class="d-inline-block text-muted">{{$msj->body}}</p> | 
+                  <p class="d-inline-block text-muted">{{$msj->created_at}}</p> |
                   @if($action)
                     @if($msj->Isorg == 1)
                       <a wire:click="abrirModal({{$msj->remitter_id}})" class="btn btn-primary btn-sm">
@@ -137,12 +137,12 @@
                 </div>
               </li>
 
-              <li class="list-group-item list-group-flush border-start-0 border-end-0 bg-light">
+              <li class="list-group-item list-group-flush border-start-0 border-end-0" style="background-color: #fff">
                 <hr class="dropdown-divider">
               </li>
               
               @empty
-              <li class="list-group-item list-group-flush border-start-0 border-end-0 bg-light">
+              <li class="list-group-item list-group-flush border-start-0 border-end-0" style="background-color: #fff">
                 <hr class="dropdown-divider">
               </li>
               @endforelse

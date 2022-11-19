@@ -19,29 +19,23 @@
       </nav>
     </div><!-- End Page Title -->
 
-    @if (session()->has('message'))
-      <div class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-5" role="alert" style="z-index: 2000">
-        <strong>{{ session('message') }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    @endif
     <section class="section">
       <div class="row">
         <div class="col-12">
           <div class="table-responsive">
             <table class="table text-center">
               <thead>
-                <tr class="py-auto">
-                  <th scope="col py-auto my-auto">#</th>
-                  <th scope="col py-auto my-auto">Usser</th>
-                  <th scope="col py-auto my-auto">Fundrising</th>
-                  <th scope="col py-auto my-auto">Estate</th>
-                  <th scope="col py-auto my-auto">Link</th>
-                  <th scope="col py-auto my-auto">Shared</th>
-                  <th scope="col py-auto my-auto">Time <br>remaining<br> (days)</th>
-                  <th scope="col py-auto my-auto">Donors</th>
-                  <th scope="col py-auto my-auto">Acumulated <br>points</th>
-                  <th scope="col py-auto my-auto">Actions</th>
+                <tr class="">
+                  <th scope="col">#</th>
+                  <th scope="col">Usser</th>
+                  <th scope="col">Fundrising</th>
+                  <th scope="col">Estate</th>
+                  <th scope="col">Link</th>
+                  <th scope="col">Shared</th>
+                  <th scope="col">Time <br>remaining<br> (days)</th>
+                  <th scope="col">Donors</th>
+                  <th scope="col">Acumulated <br>points</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,17 +78,37 @@
                       <td>${{$totalMoney}}</td>
                       <td class="{{$color}}">{{$status}}</td>
                       <td>
-                        <a class="btn btn-outline-warning round p-0 px-1" href="{{$link}}" target="_blank"><small>See</small></a>
-                        <a class="btn btn-outline-success round p-0 px-1" href="mailto:{{$user->email}}" target="_blank"><small>Email</small></a>
-                        <a class="btn btn-outline-primary round p-0 px-1" wire:click="$emit('openModalMsj', {{$user->id}} )"><small>Chat</small></a>
+                        <div class="dropdown">
+                          <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0 waves-effect waves-float waves-light" data-bs-toggle="dropdown">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                          </button>
+                          <div class="dropdown-menu dropdown-menu-end">
+                              <a class="dropdown-item btn btn-outline-warning" href="{{$link}}" target="_blank"><small>See</small></a>
+                              <a class="dropdown-item btn btn-outline-success" href="mailto:{{$user->email}}" target="_blank"><small>Email</small></a>
+                              <a class="dropdown-item btn btn-outline-primary" wire:click="$emit('openModalMsj', {{$user->id}} )"><small>Chat</small></a>
+                          </div>
+                        </div>
                       </td>
                       <td>{{$totalShareds}}</td>
                       <td>{{$time}}</td>
                       <td>{{$totalDon}}</td>
                       <td>{{$puntos}}</td>
                       <td>
-                        <a type="button" class="btn btn-primary p-0 px-1 text-dark" wire:click="edit({{ $event->id }})"><small>Edit</small></a>
-                        <a type="button" class="btn btn-danger p-0 px-1 text-dark" wire:click="delete({{ $event->id }})"><small>Delet</small></a>
+                        <div class="dropdown">
+                          <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0 waves-effect waves-float waves-light" data-bs-toggle="dropdown">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                          </button>
+                          <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" wire:click="edit({{ $event->id }})">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 me-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                <span>Edit</span>
+                            </a>
+                            <a class="dropdown-item" wire:click="delete({{ $event->id }})">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash me-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                <span>Delete</span>
+                            </a>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                   @endforeach

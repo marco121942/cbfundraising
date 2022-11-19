@@ -20,63 +20,59 @@
   </div><!-- End Page Title -->
 
   <section class="section">
-    @if (session()->has('message'))
-      <div class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-5" role="alert" style="z-index: 2000">
-        <strong>{{ session('message') }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    @endif
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-12">
         <a type="button" class="btn btn-get-started mt-1 mb-4 mx-auto" wire:click="create()">Create</a>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Usser</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Email</th>
-              <th scope="col">Partner <br>Name</th>
-              <th scope="col">body</th>
-              <th scope="col">link</th>
-              <th scope="col">Action</th>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Usser</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Partner <br>Name</th>
+                <th scope="col">body</th>
+                <th scope="col">link</th>
+                <th scope="col">Action</th>
 
-            </tr>
-          </thead>
-          <tbody>
-          @foreach($users as $user)
-            @forelse($user->partners as $partner)
-            <tr>
-              <th scope="row col-md-3">{{ $loop->parent->index + 1 }}</th>
-              <td>{{$user->name}}</td>
-              <td>{{$user->phone ? $user->phone : 'not' }}</td>
-              <td>{{$user->email}}</td>
-              <td>{{$partner->name ? $partner->name : 'not' }}</td>
-              <td>{{$partner->body ? $partner->body : 'not' }}</td>
-              <td>{{$partner->link ? $partner->link : 'not' }}</td>
-              <td>
-                <a type="button" class="btn btn-primary text-dark" wire:click="edit({{ $user->id }}, {{ $partner->id }})">Edit</a>
-                <a type="button" class="btn btn-danger text-dark" wire:click="delete({{ $user->id }})">Delete</a>
-              </td>
-            </tr>
-            @empty
-            <tr>
-              <th scope="row col-md-3">1</th>
-              <td>{{$user->name}}</td>
-              <td>{{$user->phone ? $user->phone : 'not' }}</td>
-              <td>{{$user->email}}</td>
-              <td>Not Partner</td>
-              <td>Not Partner</td>
-              <td>Not Partner</td>
-              <td>
-                <a type="button" class="btn btn-primary text-dark" wire:click="edit({{ $user->id }}, null)">Edit</a>
-                <a type="button" class="btn btn-danger text-dark" wire:click="delete({{ $user->id }})">Delete</a>
-              </td>
-            </tr>
-            @endforelse
-          @endforeach
-          </tbody>
-        </table>
+              </tr>
+            </thead>
+            <tbody>
+            @foreach($users as $user)
+              @forelse($user->partners as $partner)
+              <tr>
+                <th scope="row col-md-3">{{ $loop->parent->index + 1 }}</th>
+                <td>{{$user->name}}</td>
+                <td>{{$user->phone ? $user->phone : 'not' }}</td>
+                <td>{{$user->email}}</td>
+                <td>{{$partner->name ? $partner->name : 'not' }}</td>
+                <td>{{$partner->body ? $partner->body : 'not' }}</td>
+                <td>{{$partner->link ? $partner->link : 'not' }}</td>
+                <td>
+                  <a type="button" class="btn btn-primary text-dark" wire:click="edit({{ $user->id }}, {{ $partner->id }})">Edit</a>
+                  <a type="button" class="btn btn-danger text-dark" wire:click="delete({{ $user->id }})">Delete</a>
+                </td>
+              </tr>
+              @empty
+              <tr>
+                <th scope="row col-md-3">1</th>
+                <td>{{$user->name}}</td>
+                <td>{{$user->phone ? $user->phone : 'not' }}</td>
+                <td>{{$user->email}}</td>
+                <td>Not Partner</td>
+                <td>Not Partner</td>
+                <td>Not Partner</td>
+                <td>
+                  <a type="button" class="btn btn-primary text-dark" wire:click="edit({{ $user->id }}, null)">Edit</a>
+                  <a type="button" class="btn btn-danger text-dark" wire:click="delete({{ $user->id }})">Delete</a>
+                </td>
+              </tr>
+              @endforelse
+            @endforeach
+            </tbody>
+          </table>
+        </div>
         @if($isModalOpen)
             <div class="modal fade show" style="display: block;" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true" role="dialog" aria-modal="true">
               <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">

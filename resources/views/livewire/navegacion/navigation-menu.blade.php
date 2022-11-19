@@ -440,7 +440,7 @@
                       <form class="chat-app-form" wire:submit.prevent="send()">
                         <div class="col-12">
                           <label for="body" class="form-label text-muted">Response</label>
-                          <textarea class="form-control" name="body" id="body" rows="3" wire:model.defer='body' aria-describedby="bodyHelp"></textarea>
+                          <textarea class="form-control bg-white" name="body" id="body" rows="3" wire:model.defer='body' aria-describedby="bodyHelp"></textarea>
                           <div id="bodyHelp" class="form-text text-muted">Enter the Response's Information's.</div>
                         </div>
                         <div class="modal-footer pt-2 pb-0 bg-light">

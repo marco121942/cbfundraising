@@ -64,9 +64,9 @@ class NavigationMenu extends Component
                 $accion = 'href="'.url('/event') . '/' . $noty->event->slug.'" target="_blank"';
             };
             if (auth()->user()->hasRole('admin')) {
-                $mensaje = '<h6 class=""><strong>User '. $nameNoty .', Event '.$noty->Consuccess.'</strong></h6><p class="">'.$tituloNoty1.'</p>';
+                $mensaje = '<h6 class="py-0 my-0"><strong>User '. $nameNoty .', Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0">'.$tituloNoty1.'</p>';
             }else{
-                $mensaje = '<h6 class=""><strong>Event '.$noty->Consuccess.'</strong></h6><p class="">'.$tituloNoty1.'</p>';
+                $mensaje = '<h6 class="py-0 my-0"><strong>Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0">'.$tituloNoty1.'</p>';
             };
             $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Notification', 'accion' => $accion, 'fecha' => $noty->created_at]);
         }
@@ -83,7 +83,7 @@ class NavigationMenu extends Component
                 $accion = 'onclick="mailtover('.$msj->id.", '".str::before($msj->email, '@')."', '".str::after($msj->email, '@')."')".'"';
             };
             
-            $mensaje = '<h6 class=""><strong>User '.$msj->name.'</strong></h6><p class="">'.$msj->body.'</p>';
+            $mensaje = '<h6 class="py-0 my-0"><strong>User '.$msj->name.'</strong></h6><p class="py-0 my-0">'.$msj->body.'</p>';
             
             $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Mensaje', 'accion' => $accion, 'fecha' => $msj->created_at]);
         }

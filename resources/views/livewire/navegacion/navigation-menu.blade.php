@@ -503,13 +503,15 @@
       let color = '';
       if (tipo === 'Notification') {
         color = 'bg-primary';
+        classBoton = 'btn btn-outline-primary round waves-effect';
       }else{
         color = 'bg-success';
+        classBoton = 'btn btn-outline-success round waves-effect';
       }
       let htmlMarkup;
       if (accion){
         htmlMarkup = `
-          <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="120000">
+          <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="20000" style="width: initial; max-width: none;">
               <div class="toast-header ${color} text-white">
                     <strong class="me-auto">${tipo}</strong>
                     <small>${momento}</small>
@@ -519,13 +521,13 @@
               </div>
               <div class="toast-body text-center">
                   ${mensaje}
-                  <a ${accion} class="btn-sm btn-get-started my-0 mx-auto py-1 px-2"> Go </a>
+                  <a ${accion} class="${classBoton} p-0 px-1">Go</a>
               </div>
           </div>
         `;
       }else{
         htmlMarkup = `
-          <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="120000">
+          <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="20000" style="width: initial; max-width: none;">
               <div class="toast-header ${color} text-white">
                     <strong class="me-auto">${tipo}</strong>
                     <small>${momento}</small>

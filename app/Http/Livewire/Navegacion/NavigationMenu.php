@@ -15,7 +15,10 @@ use Carbon\Carbon;
 
 class NavigationMenu extends Component
 {
-    protected $listeners = ['notificacionesMenu' => 'pushear'];
+    protected $listeners = [
+                            'notificacionesMenu' => 'pushear',
+                            'openModalMsj' => 'abrirModal'
+                            ];
 
     public $notificaciones, $messages, $toma, $body;
     public $isModalOpen = null;

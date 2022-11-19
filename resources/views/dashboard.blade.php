@@ -197,7 +197,7 @@
             <div class="card mb-4 py-0 text-center" id="description">
               <div class="card-body py-3">
                   <h3 class="h5 d-inline">Create an event to start the fundraiser</h3>
-                  <a href="{{ route('editevent') }}" class="btn-sm btn-get-started my-0 mx-3">Go Event Created</a>
+                  <a href="{{ route('editevent') }}" class="btn btn-outline-warning round mx-auto">Go Event Created</a>
               </div>
             </div>
         </div>

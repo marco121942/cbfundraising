@@ -27,78 +27,81 @@
     @endif
     <section class="section">
       <div class="row">
-        <div class="col-lg-12">
-
-          <table class="table text-center">
-            <thead>
-              <tr class="py-auto">
-                <th scope="col py-auto my-auto">#</th>
-                <th scope="col py-auto my-auto">Usser</th>
-                <th scope="col py-auto my-auto">Fundrising</th>
-                <th scope="col py-auto my-auto">Estate</th>
-                <th scope="col py-auto my-auto">Link</th>
-                <th scope="col py-auto my-auto">Shared</th>
-                <th scope="col py-auto my-auto">Time <br>remaining<br> (days)</th>
-                <th scope="col py-auto my-auto">Donors</th>
-                <th scope="col py-auto my-auto">Acumulated <br>points</th>
-                <th scope="col py-auto my-auto">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($users as $user)
-                @foreach($user->events as $event)
-                  @php
-                    $donaciones = $event->donations;
-                    $puntos = $event->points->sum('count');
-                    $status = $event->constatus;
-                    if($event->status < 3){
-                      $link = url('/event') . '/' . $event->slug;
-                    }else{
-                      $link = url('admin/event') . '/' . $event->slug;
-                    }
-                    //$status = App\Models\Status::find($event->status + 1)->type;
-                    $totalDon = 0;
-                    $totalMoney = 0;
-                    foreach ($donaciones as $donacion) {
-                        $totalDon += $donacion->count;
-                        $totalMoney += $donacion->money;
-                    };
-                    $totalShareds = isset($event->shareds->last()->count) ? $event->shareds->last()->count : 0;
-                    $fechaActual = Carbon::now();
-                    $fechaInicial = Carbon::parse($event->created_at);
-                    $fechaFinal = Carbon::parse($event->created_at)->addDays($event->duration);
-                    $diasTranscurridos = $fechaActual->diffInDays($fechaInicial);
-                    // $time = $fechaActual->diffInDays($fechaFinal);
-                    $time = $event->duration - $diasTranscurridos;
-                    if($status === 'In_Process'){
-                      $color = 'table-warning';
-                    } else if ($status === 'Aproved'){
-                      $color = 'table-success';
-                    }else{
-                      $color = 'table-danger';
-                    }
-                  @endphp
-                  <tr>
-                    <th scope="row">{{$loop->parent->index + 1}}</th>
-                    <td>{{$user->name}}</td>
-                    <td>${{$totalMoney}}</td>
-                    <td class="{{$color}}">{{$status}}</td>
-                    <td>
-                      <a class="btn btn-warning" href="{{$link}}"target="_blank">See</a>
-                    </td>
-                    <td>{{$totalShareds}}</td>
-                    <td>{{$time}}</td>
-                    <td>{{$totalDon}}</td>
-                    <td>{{$puntos}}</td>
-                    <td>
-                      <a type="button" class="btn btn-primary text-dark" wire:click="edit({{ $event->id }})">Edit</a>
-                      <a type="button" class="btn btn-danger text-dark" wire:click="delete({{ $event->id }})">Delet</a>
-                    </td>
-                  </tr>
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table text-center">
+              <thead>
+                <tr class="py-auto">
+                  <th scope="col py-auto my-auto">#</th>
+                  <th scope="col py-auto my-auto">Usser</th>
+                  <th scope="col py-auto my-auto">Fundrising</th>
+                  <th scope="col py-auto my-auto">Estate</th>
+                  <th scope="col py-auto my-auto">Link</th>
+                  <th scope="col py-auto my-auto">Shared</th>
+                  <th scope="col py-auto my-auto">Time <br>remaining<br> (days)</th>
+                  <th scope="col py-auto my-auto">Donors</th>
+                  <th scope="col py-auto my-auto">Acumulated <br>points</th>
+                  <th scope="col py-auto my-auto">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($users as $user)
+                  @foreach($user->events as $event)
+                    @php
+                      $donaciones = $event->donations;
+                      $puntos = $event->points->sum('count');
+                      $status = $event->constatus;
+                      if($event->status < 3){
+                        $link = url('/event') . '/' . $event->slug;
+                      }else{
+                        $link = url('admin/event') . '/' . $event->slug;
+                      }
+                      //$status = App\Models\Status::find($event->status + 1)->type;
+                      $totalDon = 0;
+                      $totalMoney = 0;
+                      foreach ($donaciones as $donacion) {
+                          $totalDon += $donacion->count;
+                          $totalMoney += $donacion->money;
+                      };
+                      $totalShareds = isset($event->shareds->last()->count) ? $event->shareds->last()->count : 0;
+                      $fechaActual = Carbon::now();
+                      $fechaInicial = Carbon::parse($event->created_at);
+                      $fechaFinal = Carbon::parse($event->created_at)->addDays($event->duration);
+                      $diasTranscurridos = $fechaActual->diffInDays($fechaInicial);
+                      // $time = $fechaActual->diffInDays($fechaFinal);
+                      $time = $event->duration - $diasTranscurridos;
+                      if($status === 'In_Process'){
+                        $color = 'table-warning';
+                      } else if ($status === 'Aproved'){
+                        $color = 'table-success';
+                      }else{
+                        $color = 'table-danger';
+                      }
+                    @endphp
+                    <tr>
+                      <th scope="row">{{$loop->parent->index + 1}}</th>
+                      <td>{{$user->name}}</td>
+                      <td>${{$totalMoney}}</td>
+                      <td class="{{$color}}">{{$status}}</td>
+                      <td>
+                        <a class="btn btn-outline-warning round p-0 px-1" href="{{$link}}" target="_blank"><small>See</small></a>
+                        <a class="btn btn-outline-success round p-0 px-1" href="mailto:{{$user->email}}" target="_blank"><small>Email</small></a>
+                        <a class="btn btn-outline-primary round p-0 px-1" wire:click="$emit('openModalMsj', {{$user->id}} )"><small>Chat</small></a>
+                      </td>
+                      <td>{{$totalShareds}}</td>
+                      <td>{{$time}}</td>
+                      <td>{{$totalDon}}</td>
+                      <td>{{$puntos}}</td>
+                      <td>
+                        <a type="button" class="btn btn-primary p-0 px-1 text-dark" wire:click="edit({{ $event->id }})"><small>Edit</small></a>
+                        <a type="button" class="btn btn-danger p-0 px-1 text-dark" wire:click="delete({{ $event->id }})"><small>Delet</small></a>
+                      </td>
+                    </tr>
+                  @endforeach
                 @endforeach
-              @endforeach
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
           @if($isModalOpen)
             <div class="modal show d-block" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true" role="dialog" aria-modal="true">
               <div class="modal-dialog modal-dialog-centered">

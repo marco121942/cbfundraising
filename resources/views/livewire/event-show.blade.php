@@ -86,7 +86,7 @@
     
   </section><!-- End Hero -->
      
-  <section class="bg_animate">
+  <section class="bg_animate" id="accion">
    
 
     <div class="banner contenedor">

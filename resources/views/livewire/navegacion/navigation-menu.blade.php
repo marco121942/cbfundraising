@@ -513,13 +513,13 @@
         htmlMarkup = `
           <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="20000" style="width: initial; max-width: none;">
               <div class="toast-header ${color} text-white">
-                    <strong class="me-auto">${tipo}</strong>
-                    <small>${momento}</small>
+                    <strong class="mr-1">${tipo}</strong>
+                    <small class="small ml-1">${momento}</small>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
                     X
                     </button>
               </div>
-              <div class="toast-body text-center">
+              <div class="toast-body text-center text-muted">
                   ${mensaje}
                   <a ${accion} class="${classBoton} p-0 px-1">Go</a>
               </div>
@@ -529,13 +529,13 @@
         htmlMarkup = `
           <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="20000" style="width: initial; max-width: none;">
               <div class="toast-header ${color} text-white">
-                    <strong class="me-auto">${tipo}</strong>
-                    <small>${momento}</small>
+                    <strong class="mr-1">${tipo}</strong>
+                    <small class="small ml-1">${momento}</small>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
                     X
                     </button>
               </div>
-              <div class="toast-body text-center">
+              <div class="toast-body text-center text-muted">
                   ${mensaje}
               </div>
           </div>

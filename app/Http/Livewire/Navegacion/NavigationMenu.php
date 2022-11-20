@@ -61,14 +61,14 @@ class NavigationMenu extends Component
             }
             
             if (isset($noty->event->slug)) {
-                $accion = 'href="'.url('/event') . '/' . $noty->event->slug.'" target="_blank"';
+                $accion = 'href="'.url('/event') . '/' . $noty->event->slug.'#accion" target="_blank"';
             };
             if (auth()->user()->hasRole('admin')) {
-                $mensaje = '<h6 class="py-0 my-0"><strong>User '. $nameNoty .', Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0">'.$tituloNoty1.'</p>';
+                $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">User '. $nameNoty .', Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>';
             }else{
-                $mensaje = '<h6 class="py-0 my-0"><strong>Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0">'.$tituloNoty1.'</p>';
+                $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>';
             };
-            $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Notification', 'accion' => $accion, 'fecha' => $noty->created_at]);
+            $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Notification', 'accion' => $accion, 'fecha' => $noty->created_at->format('y-m-d H:i')]);
         }
 
         foreach ($paMensajear as $msj) {

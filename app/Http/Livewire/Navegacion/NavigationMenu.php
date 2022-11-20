@@ -66,7 +66,7 @@ class NavigationMenu extends Component
             if (auth()->user()->hasRole('admin')) {
                 $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">User '. $nameNoty .', Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>';
             }else{
-                $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>';
+                $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p> <small class="small text-muted">Event Shared</small>';
             };
             $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Notification', 'accion' => $accion, 'fecha' => $noty->created_at->format('y-m-d H:i')]);
         }

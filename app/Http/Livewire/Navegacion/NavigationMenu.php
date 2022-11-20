@@ -50,23 +50,23 @@ class NavigationMenu extends Component
             $accion = null;
             $tituloNoty1 = '';
             $nameNoty = '';
+            $piePagina = '';
             if (isset($noty->event->title1)) {
                 $tituloNoty1 = $noty->event->title1;
             }
             if (isset($noty->event->user->name)) {
-                $nameNoty = $noty->event->title1;
-            }
-            if (isset($noty->event->user->name)) {
-                $nameNoty = $noty->event->title1;
+                $nameNoty = $noty->event->user->name;
             }
             
             if (isset($noty->event->slug)) {
                 $accion = 'href="'.url('/event') . '/' . $noty->event->slug.'#accion" target="_blank"';
+                $piePagina = '<hr class="py-0 my-0">
+                  <small class="small text-muted">Event Shared</small> <br>';
             };
             if (auth()->user()->hasRole('admin')) {
-                $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">User '. $nameNoty .', Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>';
+                $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">User '. $nameNoty .', <br> Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>';
             }else{
-                $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p><hr class="py-0 my-0"><small class="small text-muted">Event Shared</small> <br>';
+                $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>'.$piePagina;
             };
             $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Notification', 'accion' => $accion, 'fecha' => $noty->created_at->format('y-m-d H:i')]);
         }

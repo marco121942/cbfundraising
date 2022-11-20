@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Notification;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -60,7 +61,7 @@ class EventData extends Component
         }
 
         Notification::create([
-            'user_id' => $eventito->user()->id,
+            'user_id' => $eventito->user_id,
             'receiver_id' => 1,
             'event_id' => $this->event_id,
             'view' => false,
@@ -82,7 +83,7 @@ class EventData extends Component
         $this->status = $event->status;
 
         Notification::create([
-            'user_id' => $event->user()->id,
+            'user_id' => $event->user_id,
             'receiver_id' => 1,
             'event_id' => $this->event_id,
             'view' => false,

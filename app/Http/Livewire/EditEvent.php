@@ -14,9 +14,12 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+
+use Intervention\Image\Facades\Image;
 
 class EditEvent extends Component
 {
@@ -106,8 +109,6 @@ class EditEvent extends Component
 
     public function save()
     {
-        Log::info($this->eventImage1);
-
         $objetos = [];
         $reglas = [];
 
@@ -117,7 +118,6 @@ class EditEvent extends Component
         foreach($this->eventImage1 as $key => $val)
         {
             if ($key > 0) {
-                LOG::info($key);
                 $objetos['eventImage'.$key] = $this->existe($key);
                 $reglas['eventImage'.$key] = 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
             }
@@ -141,23 +141,18 @@ class EditEvent extends Component
             ],
         )->validate();
 
-        Log::info('$imagenesValidadas');
-        Log::info($validator);
+        // Log::info('$imagenesValidadas');
+        // Log::info($validator);
 
-        $this->validate();
+        // $this->validate();
         
-        if ($validator->fails()) {
-            Log::info('error al validar');
-            Log::info($validator->errors()->all());
-            // $this->eventImage1 = [];
-        };
-        
-      
         // $this->validate([
         //     'eventImage1' => 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic',
         // ]);
       
-        Log::info($this->eventImage1);
+        // Log::info($this->eventImage1[0]);
+        
+        // Log::info($this->eventImage1[0]);
 
         Log::info('desde save');
 
@@ -165,34 +160,51 @@ class EditEvent extends Component
 
             Log::info('desde save evento no es null');
 
-            Log::info(array_key_exists(0,$this->eventImage1));
-            Log::info(array_key_exists(1,$this->eventImage1));
-            Log::info(array_key_exists(2,$this->eventImage1));
+            // Log::info(array_key_exists(0,$this->eventImage1));
+            // Log::info(array_key_exists(1,$this->eventImage1));
+            // Log::info(array_key_exists(2,$this->eventImage1));
 
             if (array_key_exists(0,$this->eventImage1)) {
-                $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', Str::substr($this->evento->eventImage1, 19));
+                // $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', Str::substr($this->evento->eventImage1, 19));
+                $name = 'eventImage/'. Str::substr($this->evento->eventImage1, 19);
+                $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
+                $img->resize(1024, 540);
+                $img->insert(public_path('assets/img/android-icon-96x96.png'), 'bottom-right', 10, 10);
+                $img->save(public_path('storage/'). $name);
+
                 $ruta1 = $this->evento->eventImage1;
             }else{
                 $ruta1 = $this->evento->eventImage1;
             };
 
             if (array_key_exists(1,$this->eventImage1)) {
-                $storedImage2 = $this->eventImage1[1]->storeAs('public/eventImage', Str::substr($this->evento->eventImage2, 19));
+                // $storedImage2 = $this->eventImage1[1]->storeAs('public/eventImage', Str::substr($this->evento->eventImage2, 19));
+                $name = 'eventImage/'. Str::substr($this->evento->eventImage2, 19);
+                $img2 = Image::make($this->eventImage1[1])->encode('jpg', 75);
+                $img2->resize(1024, 540);
+                $img2->insert(public_path('assets/img/ms-icon-310x310.png'), 'bottom-right', 10, 10);
+                $img2->save(public_path('storage/'). $name);
+
                 $ruta2 = $this->evento->eventImage2;
             }else{
                 $ruta2 = $this->evento->eventImage2;
             };
 
             if (array_key_exists(2,$this->eventImage1)) {
-                $storedImage3 = $this->eventImage1[2]->storeAs('public/eventImage', Str::substr($this->evento->eventImage3, 19));
+                // $storedImage3 = $this->eventImage1[2]->storeAs('public/eventImage', Str::substr($this->evento->eventImage3, 19));
+                $name = 'eventImage/'. Str::substr($this->evento->eventImage3, 19);
+                $img3 = Image::make($this->eventImage1[2])->encode('jpg', 75);
+                $img3->resize(1024, 540);
+                $img3->insert(public_path('assets/img/ms-icon-310x310.png'), 'bottom-right', 10, 10);
+                $img3->save(public_path('storage/'). $name);
                 $ruta3 = $this->evento->eventImage3;
             }else{
                 $ruta3 = $this->evento->eventImage3;
             };
 
-            Log::info($ruta1);
-            Log::info($ruta2);
-            Log::info($ruta3);
+            // Log::info($ruta1);
+            // Log::info($ruta2);
+            // Log::info($ruta3);
             
             
             Event::find($this->evento->id)->update([
@@ -227,28 +239,49 @@ class EditEvent extends Component
             
             Log::info('desde save evento es null');
             
-            Log::info(array_key_exists(0,$this->eventImage1));
-            Log::info(array_key_exists(1,$this->eventImage1));
-            Log::info(array_key_exists(2,$this->eventImage1));
+            // Log::info(array_key_exists(0,$this->eventImage1));
+            // Log::info(array_key_exists(1,$this->eventImage1));
+            // Log::info(array_key_exists(2,$this->eventImage1));
             
             if (array_key_exists(0,$this->eventImage1)) {
-                $extencion1 = $this->eventImage1[0]->getClientOriginalExtension();
-                $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', $this->slug(1).'.'.$extencion1);
-                $ruta1 = 'storage/' . Str::substr($storedImage1, 7);
+                // $extencion1 = $this->eventImage1[0]->getClientOriginalExtension();
+                // $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', $this->slug(1).'.'.$extencion1);
+                // $ruta1 = 'storage/' . Str::substr($storedImage1, 7);
+                $name = 'eventImage/'. $this->slug(1).'.'.'jpg';
+                $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
+                $img->resize(1024, 540);
+                $img->insert(public_path('assets/img/ms-icon-310x310.png'), 'bottom-right', 10, 10);
+                $img->save(public_path('storage/'). $name);
+
+                $ruta1 = 'storage/' . $name;
             };
 
             if (array_key_exists(1,$this->eventImage1)) {
-                $extencion2 = $this->eventImage1[1]->getClientOriginalExtension();
-                $storedImage2 = $this->eventImage1[1]->storeAs('public/eventImage', $this->slug(2).'.'.$extencion2);
-                $ruta2 = 'storage/' . Str::substr($storedImage2, 7);
+                // $extencion2 = $this->eventImage1[1]->getClientOriginalExtension();
+                // $storedImage2 = $this->eventImage1[1]->storeAs('public/eventImage', $this->slug(2).'.'.$extencion2);
+                // $ruta2 = 'storage/' . Str::substr($storedImage2, 7);
+                $name = 'eventImage/'. $this->slug(2).'.'.'jpg';
+                $img2 = Image::make($this->eventImage1[1])->encode('jpg', 75);
+                $img2->resize(1024, 540);
+                $img2->insert(public_path('assets/img/ms-icon-310x310.png'), 'bottom-right', 10, 10);
+                $img2->save(public_path('storage/'). $name);
+
+                $ruta2 = 'storage/' . $name;
             }else{
                 $ruta2 = $ruta1;
             };
 
             if (array_key_exists(2,$this->eventImage1)) {
-                $extencion3 = $this->eventImage1[2]->getClientOriginalExtension();
-                $storedImage3 = $this->eventImage1[2]->storeAs('public/eventImage', $this->slug(3).'.'.$extencion3);
-                $ruta3 = 'storage/' . Str::substr($storedImage3, 7);
+                // $extencion3 = $this->eventImage1[2]->getClientOriginalExtension();
+                // $storedImage3 = $this->eventImage1[2]->storeAs('public/eventImage', $this->slug(3).'.'.$extencion3);
+                // $ruta3 = 'storage/' . Str::substr($storedImage3, 7);
+                $name = 'eventImage/'. $this->slug(3).'.'.'jpg';
+                $img3 = Image::make($this->eventImage1[2])->encode('jpg', 75);
+                $img3->resize(1024, 540);
+                $img3->insert(public_path('assets/img/ms-icon-310x310.png'), 'bottom-right', 10, 10);
+                $img3->save(public_path('storage/'). $name);
+
+                $ruta3 = 'storage/' . $name;
             }else{
                 $ruta3 = $ruta1;
             };
@@ -293,7 +326,7 @@ class EditEvent extends Component
             session()->flash('message', 'successfully created event.');
             
         }
-            
+
       // $this->mount();
       redirect('/editevent');
         

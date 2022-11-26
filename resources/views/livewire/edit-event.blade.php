@@ -31,23 +31,29 @@
             <form wire:submit.prevent="save()" enctype="multipart/form-data">
               <h5 class="card-title">Edit Event (section 1 - Required)</h5>
               <div class="row mb-3">
-                <label for="eventImage1" class="col-sm-2 col-form-label">Event image 1</label>
+                <label for="eventImage1" class="col-sm-2 col-form-label">Event image</label>
                 <div class="col-sm-10">
-                  <input class="form-control" type="file" wire:model.defer='eventImage1' multiple>
+                  <input class="form-control" type="file" wire:model='eventImage1' multiple>
                   <p class="small text-muted py-0 my-0">Select 3 images file type: Png, Jpg, Jpeg, Svg o Gif, Preference's of: 1024px x 580px</p>
                   <!-- id="eventImage1" name="eventImage1" -->
                 </div>
                 <div wire:loading wire:target='eventImage1'>Uploading...</div>
                 
-                @error('eventImage1.*')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>There is a problem with the file type, please select an image file type: Png, Jpg, Jpeg, Svg o Gif</strong>
+                @error('eventImage0')
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
+                    <strong>{{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 @enderror
-                @error('Imagen')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>{{ $message }}</strong>
+                @error('eventImage1')
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
+                    <strong>Image 2: {{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                @enderror
+                @error('eventImage2')
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
+                    <strong>Image 3: {{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 @enderror
@@ -58,7 +64,7 @@
                 <input type="text" class="form-control" wire:model.defer='title1' placeholder="title1" >
                 <!-- id="title1" name="title1" -->
                 @error('title1')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>{{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -70,7 +76,7 @@
                 <textarea rows="3" class="form-control" wire:model.defer='description1' ></textarea>
                 <!-- id="description1" name="description1"  -->
                 @error('description1')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>{{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -84,7 +90,7 @@
                 <input type="text" class="form-control" wire:model.defer='title2' placeholder="title2">
                 <!-- id="title2" name="title2"  -->
                 @error('title2')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>{{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -173,24 +179,29 @@
             <!-- General Form Elements -->
             <form wire:submit.prevent="save()" enctype="multipart/form-data">
               <h5 class="card-title">Edit Event (section 1 - Required)</h5>
-              <div class="row mb-3">
-                <label for="eventImage1" class="col-sm-2 col-form-label">Event image 1</label>
+              <div class="row mb-1">
+                <label for="eventImage1" class="col-sm-2 col-form-label">Event image</label>
                 <div class="col-sm-10">
-                  <input class="form-control" type="file" wire:model.defer='eventImage1' multiple>
+                  <input class="form-control" type="file" wire:model='eventImage1' multiple>
                   <p class="small text-muted py-0 my-0">Select 3 images file type: Png, Jpg, Jpeg, Svg o Gif, Preference's of: 1024px x 580px</p>
-                  <!-- id="eventImage1" name="eventImage1" -->
                 </div>
                 <div wire:loading wire:target='eventImage1'>Uploading...</div>
                 
-                @error('eventImage1.*')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>There is a problem with the file type, please select an image file type: Png, Jpg, Jpeg, Svg o Gif</strong>
+                @error('eventImage0')
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
+                    <strong>{{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 @enderror
-                @error('Imagen')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>{{ $message }}</strong>
+                @error('eventImage1')
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
+                    <strong>Image 2: {{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                @enderror
+                @error('eventImage2')
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
+                    <strong>Image 3: {{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 @enderror
@@ -201,7 +212,7 @@
                 <input type="text" class="form-control" wire:model.defer='title1' placeholder="title1" >
                 <!-- id="title1" name="title1" -->
                 @error('title1')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>{{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -213,7 +224,7 @@
                 <textarea rows="3" class="form-control" wire:model.defer='description1' ></textarea>
                 <!-- id="description1" name="description1"  -->
                 @error('description1')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>{{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>

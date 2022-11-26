@@ -44,33 +44,31 @@ class CheckEvent extends Command
      */
     public function handle()
     {
-        Log::info('desde el CheckEvent');
+        // Log::info('desde el CheckEvent');
 
         $fechaActual = Carbon::now();
         
         $eventos = Event::where('status', '<', 3)->get();
-        Log::info('se busca los eventos con estatus menor a tres');
+        // Log::info('se busca los eventos con estatus menor a tres');
         // Log::info($eventos->get());
 
-        Log::info('se recorre los eventos');
+        // Log::info('se recorre los eventos');
         foreach ($eventos as $evento) {
-            Log::info('se entra en el foreach');
+            // Log::info('se entra en el foreach');
             if ( isset( $evento->created_at ) ) {
-                Log::info('el evento posee created_at');
+                // Log::info('el evento posee created_at');
                 $fechaInicial = Carbon::parse($evento->created_at);
-                // $fechaFinal = Carbon::parse($evento->created_at)->addDays($evento->duration);
-                // $time = $fechaActual->diffInDays($fechaFinal);
                 $diasTranscurridos = $fechaActual->diffInDays($fechaInicial);
                 $time = $evento->duration - $diasTranscurridos;
                 if ($time < 0) {
-                    Log::info('ya no le quedan dias');
+                    // Log::info('ya no le quedan dias');
                     $status = 5;
                     $suceso = 6;
-                    Log::info('se cambia el estatus del evento');
+                    // Log::info('se cambia el estatus del evento');
                     $eventito = Event::updateOrCreate(['id' => $evento->id], [
                         'status' => $status,
                     ]);
-                    Log::info('se crea la notificacion');
+                    // Log::info('se crea la notificacion');
                     Notification::create([
                         'user_id' => $eventito->user_id,
                         'receiver_id' => 1,
@@ -80,16 +78,16 @@ class CheckEvent extends Command
                         'deleted_receiver' => false,
                     ]);
                 }else{
-                    Log::info('todavia le quedan dias');
-                    Log::info('no cambia el estatus del evento');
+                    // Log::info('todavia le quedan dias');
+                    // Log::info('no cambia el estatus del evento');
                 }
             }else{
-                Log::info('el evento no posee created_at');
-                Log::info('se cambia el estatus del evento');
+                // Log::info('el evento no posee created_at');
+                // Log::info('se cambia el estatus del evento');
                 $eventito = Event::updateOrCreate(['id' => $evento->id], [
                     'status' => $status,
                 ]);
-                Log::info('se crea la notificacion');
+                // Log::info('se crea la notificacion');
                 Notification::create([
                     'user_id' => $eventito->user_id,
                     'receiver_id' => 1,
@@ -100,7 +98,7 @@ class CheckEvent extends Command
                 ]);
             };
         };
-        Log::info('YA SE RECORRIO LOS EVENTOS');
+        // Log::info('YA SE RECORRIO LOS EVENTOS');
         return 0;
     }
 }

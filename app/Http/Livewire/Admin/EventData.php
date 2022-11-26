@@ -70,9 +70,14 @@ class EventData extends Component
         ]);
 
         session()->flash('message', $this->event_id ? 'event updated.' : 'event created.');
-        $this->closeModalPopover();
-        $this->resetCreateForm();
-        $this->mount();
+        if ($this->status > 3) {
+            $this->closeModalPopover();
+            redirect('/admin/stopevent');
+        }else{
+            $this->closeModalPopover();
+            $this->resetCreateForm();
+            $this->mount();
+        }
     }
 
     public function edit($id)
@@ -102,14 +107,17 @@ class EventData extends Component
         // event::find($id)->delete();
         session()->flash('message', 'Event deleted.');
         $this->resetCreateForm();
-        $this->mount();
+        redirect('/admin/stopevent');
     }
-    
+
     public function mount()
     {
         $this->users = User::with('events','events.donations','events.shareds','events.points')
+        // ->whereHas('events', function($query){
+        //     return $query->whereNotNull('status');
+        // })
         ->whereHas('events', function($query){
-            return $query->whereNotNull('status');
+            return $query->where('status', '<', 4);
         })
         ->get()
         ->filter(function ($user){

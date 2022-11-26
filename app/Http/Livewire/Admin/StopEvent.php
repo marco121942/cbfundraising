@@ -25,14 +25,32 @@ class StopEvent extends Component
         session()->flash('message', 'Event deleted.');
         $this->mount();
     }
+
+    public function restored($id)
+    {
+        $fechaActual = Carbon::now();
+        
+        $duration = 30;
+
+
+        Event::updateOrCreate(['id' => $id], [
+            'status' => 1,
+            'duration' => $duration,
+            'created_at' => $fechaActual,
+        ]);
+        // event::find($id)->delete();
+        session()->flash('message', 'Event restored.');
+        // $this->mount();
+        redirect('/admin/eventdata');
+    }
     
     public function mount()
     {
         $this->users = User::with(['events' => function($query){
-            return $query->where('status', 4);
+            return $query->where('status', '>', 3);
         }])
         ->whereHas('events', function($query){
-            return $query->where('status', 4);
+            return $query->where('status', '>', 3);
         })
         ->get()
         ->filter(function ($user){

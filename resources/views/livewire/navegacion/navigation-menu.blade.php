@@ -40,7 +40,7 @@
               @endphp
               <a class="nav-link fs-2" href="#" data-bs-toggle="dropdown">
                 <i class="bi bi-envelope"></i>
-                <span class="badge rounded-pill bg-primary badge-up">{{$cantidadMensages}}</span>
+                <span class="badge rounded-pill bg-success badge-up">{{$cantidadMensages}}</span>
               </a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
                     <li class="dropdown-menu-header">
@@ -155,7 +155,7 @@
               @endphp
               <a class="nav-link fs-2" href="#" data-bs-toggle="dropdown">
                 <i class="bi bi-bell"></i>
-                <span class="badge rounded-pill bg-danger badge-up">{{$cantidadNoty}}</span>
+                <span class="badge rounded-pill bg-primary badge-up">{{$cantidadNoty}}</span>
               </a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
                     <li class="dropdown-menu-header">
@@ -462,6 +462,7 @@
 
 
 @push('js')
+  @if (Route::currentRouteName() == "adminDashboard" or Route::currentRouteName() == "dashboard")
   <script>
     window.addEventListener('load', () => {
     
@@ -469,6 +470,10 @@
       console.log('notificacionesMenu');
 
     });
+  </script>
+  @endif
+
+  <script>
     function scrollDiv(){     
         var div = document.getElementById('chat');
         div.scrollTop = '9999';     

@@ -28,64 +28,74 @@ class NavigationMenu extends Component
     }
 
     public function pushear(){
-        if (auth()->user()->hasRole('admin')) {
-            $paNotificar = $this->notificaciones->filter(function ($noty){
-                            return $noty->deleted_receiver === 0;
-                        });
+        if (session()->has('pusheado')) {
+            $pusheado = session('pusheado') ? true : false ;
         }else{
-            $paNotificar = $this->notificaciones->filter(function ($noty){
-                            return $noty->view === 0;
-                        });
+            $pusheado = false;
         }
-        $mensajes = $this->messages;
-
-        $paMensajear = $mensajes->sortBy('created_at')
-                                ->filter(function ($sms){
-                                    if ($sms->receiver_id == Auth::user()->id && $sms->view == false) {
-                                        return $sms->receiver_id == Auth::user()->id;
-                                    }
-                                })->unique('remitter_id');
-
-        foreach ($paNotificar as $noty) {
-            $accion = null;
-            $tituloNoty1 = '';
-            $nameNoty = '';
-            $piePagina = '';
-            if (isset($noty->event->title1)) {
-                $tituloNoty1 = $noty->event->title1;
-            }
-            if (isset($noty->event->user->name)) {
-                $nameNoty = $noty->event->user->name;
-            }
+        
+        if ($pusheado === false) {
             
-            if (isset($noty->event->slug)) {
-                $accion = 'href="'.url('/event') . '/' . $noty->event->slug.'#accion" target="_blank"';
-                $piePagina = '<hr class="py-0 my-0">
-                  <small class="small text-muted">Event Shared</small> <br>';
-            };
             if (auth()->user()->hasRole('admin')) {
-                $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">User '. $nameNoty .', <br> Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>';
+                $paNotificar = $this->notificaciones->filter(function ($noty){
+                                return $noty->deleted_receiver === 0;
+                            });
             }else{
-                $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>'.$piePagina;
-            };
-            $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Notification', 'accion' => $accion, 'fecha' => $noty->created_at->format('y-m-d H:i')]);
-        }
+                $paNotificar = $this->notificaciones->filter(function ($noty){
+                                return $noty->view === 0;
+                            });
+            }
+            $mensajes = $this->messages;
 
-        foreach ($paMensajear as $msj) {
-            $accion = null;
-            if (isset($msj->remitter_id)) {
-                if ($msj->Isorg == 1) {
-                    $accion = 'onclick="modalver('.$msj->remitter_id.')"';
-                }else{
-                    $accion = 'onclick="mailtover('.$msj->id.", '".str::before($msj->email, '@')."', '".str::after($msj->email, '@')."')".'"';    
+            $paMensajear = $mensajes->sortBy('created_at')
+                                    ->filter(function ($sms){
+                                        if ($sms->receiver_id == Auth::user()->id && $sms->view == false) {
+                                            return $sms->receiver_id == Auth::user()->id;
+                                        }
+                                    })->unique('remitter_id');
+
+            foreach ($paNotificar as $noty) {
+                $accion = null;
+                $tituloNoty1 = '';
+                $nameNoty = '';
+                $piePagina = '';
+                if (isset($noty->event->title1)) {
+                    $tituloNoty1 = $noty->event->title1;
                 }
-            }else{
-                $accion = 'onclick="mailtover('.$msj->id.", '".str::before($msj->email, '@')."', '".str::after($msj->email, '@')."')".'"';
-            };
-            
-            $mensaje = '<h6 class="py-0 my-0"><strong>User '.$msj->name.'</strong></h6><p class="py-0 my-0">'.$msj->body.'</p>';
-            
-            $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Mensaje', 'accion' => $accion, 'fecha' => $msj->created_at]);
+                if (isset($noty->event->user->name)) {
+                    $nameNoty = $noty->event->user->name;
+                }
+                
+                if (isset($noty->event->slug)) {
+                    $accion = 'href="'.url('/event') . '/' . $noty->event->slug.'#accion" target="_blank"';
+                    $piePagina = '<hr class="py-0 my-0">
+                      <small class="small text-muted">Event Shared</small> <br>';
+                };
+                if (auth()->user()->hasRole('admin')) {
+                    $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">User '. $nameNoty .', <br> Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>';
+                }else{
+                    $mensaje = '<h6 class="py-0 my-0"><strong class="text-muted">Event '.$noty->Consuccess.'</strong></h6><p class="py-0 my-0 text-muted">'.$tituloNoty1.'</p>'.$piePagina;
+                };
+                $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Notification', 'accion' => $accion, 'fecha' => $noty->created_at->format('y-m-d H:i')]);
+            }
+
+            foreach ($paMensajear as $msj) {
+                $accion = null;
+                if (isset($msj->remitter_id)) {
+                    if ($msj->Isorg == 1) {
+                        $accion = 'onclick="modalver('.$msj->remitter_id.')"';
+                    }else{
+                        $accion = 'onclick="mailtover('.$msj->id.", '".str::before($msj->email, '@')."', '".str::after($msj->email, '@')."')".'"';    
+                    }
+                }else{
+                    $accion = 'onclick="mailtover('.$msj->id.", '".str::before($msj->email, '@')."', '".str::after($msj->email, '@')."')".'"';
+                };
+                
+                $mensaje = '<h6 class="py-0 my-0"><strong>User '.$msj->name.'</strong></h6><p class="py-0 my-0">'.$msj->body.'</p>';
+                
+                $this->dispatchBrowserEvent('toasts', ['mensaje' => $mensaje, 'tipo' => 'Mensaje', 'accion' => $accion, 'fecha' => $msj->created_at]);
+            }
+            session(['pusheado' => true]);
         }
     }
 
@@ -107,8 +117,8 @@ class NavigationMenu extends Component
         ]);
 
         session()->flash('message', 'Your message has been sent. Thank you!');
-        LOG::info('$this->Menssage');
-        LOG::info($mensajear);
+        // LOG::info('$this->Menssage');
+        // LOG::info($mensajear);
         $this->body = '';
         $this->mount();
         $this->abrirModal($id_receiver);
@@ -132,15 +142,15 @@ class NavigationMenu extends Component
                                     ->orderBy('id', 'desc')
                                     ->get();
 
-            LOG::info('$this->notificaciones');
-            LOG::info($this->notificaciones);
+            // LOG::info('$this->notificaciones');
+            // LOG::info($this->notificaciones);
         } else {
             $this->notificaciones = Notification::with('event','event.user')
                                     ->orderBy('id', 'desc')
                                     ->get();
 
-            LOG::info('$this->notificaciones');
-            LOG::info($this->notificaciones);
+            // LOG::info('$this->notificaciones');
+            // LOG::info($this->notificaciones);
         }
         
         $this->messages = Message::where('remitter_id', Auth::user()->id)
@@ -148,13 +158,13 @@ class NavigationMenu extends Component
                                     ->orderBy('id', 'desc')
                                     ->get();
 
-            LOG::info('$this->messages');
-            LOG::info($this->messages);
+            // LOG::info('$this->messages');
+            // LOG::info($this->messages);
     }
 
     public function msjVer($idsChat){
-        LOG::info('desde msj ver');
-        LOG::info($idsChat);
+        // LOG::info('desde msj ver');
+        // LOG::info($idsChat);
         foreach ($idsChat as $key) {
             Message::where('id', $key)
                     ->where('view', false)
@@ -185,8 +195,8 @@ class NavigationMenu extends Component
 
         $this->isModalOpen = 'go';
 
-        LOG::info('$this->isModalOpen');
-        LOG::info($this->isModalOpen);
+        // LOG::info('$this->isModalOpen');
+        // LOG::info($this->isModalOpen);
     }
 
     public function sendAdmin()
@@ -210,8 +220,8 @@ class NavigationMenu extends Component
 
         $this->isModalOpen = 'go';
 
-        LOG::info('$this->isModalOpen');
-        LOG::info($this->isModalOpen);
+        // LOG::info('$this->isModalOpen');
+        // LOG::info($this->isModalOpen);
     }
 
     public function closeModalPopover()

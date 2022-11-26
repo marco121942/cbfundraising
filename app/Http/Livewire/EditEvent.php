@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Models\Event;
 use App\Models\Notification;
+use App\Rules\FileType;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -94,10 +95,10 @@ class EditEvent extends Component
         return $slug;
     }
   
-    public function existe()
+    public function existe($posicion)
     {
-      if (array_key_exists(0,$this->eventImage1)) {
-        return $this->eventImage1[0];
+      if (array_key_exists($posicion,$this->eventImage1)) {
+        return $this->eventImage1[$posicion];
       }else{
         return null;
       };
@@ -105,18 +106,56 @@ class EditEvent extends Component
 
     public function save()
     {
-      
-        Validator::make(
-            ['Imagen' => $this->existe()],
-            ['Imagen' => 'required'],
-            ['required' => 'The :attribute field is required'],
+        Log::info($this->eventImage1);
+
+        $objetos = [];
+        $reglas = [];
+
+        $objetos['eventImage0'] = $this->existe(0);
+        $reglas['eventImage0'] = 'required|mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
+
+        foreach($this->eventImage1 as $key => $val)
+        {
+            if ($key > 0) {
+                LOG::info($key);
+                $objetos['eventImage'.$key] = $this->existe($key);
+                $reglas['eventImage'.$key] = 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
+            }
+        }
+        // Log::info('$objetos');
+        // Log::info($objetos);
+        // Log::info('$reglas');
+        // Log::info($reglas);
+        
+        $validator = Validator::make(
+            // ['eventImage1' => $this->existe(0)],
+            $objetos,
+            $reglas,
+            // [
+            //     'eventImage1' => 'required',
+            //     'eventImage1' => 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic',
+            // ],
+            [
+                'required' => 'The Event Image field is required',
+                'mimes' => 'There is a problem with the file type, please select an image file type: Png, Jpg, Jpeg, Svg o Gif'
+            ],
         )->validate();
-      
+
+        Log::info('$imagenesValidadas');
+        Log::info($validator);
+
         $this->validate();
+        
+        if ($validator->fails()) {
+            Log::info('error al validar');
+            Log::info($validator->errors()->all());
+            // $this->eventImage1 = [];
+        };
+        
       
-        $this->validate([
-            'eventImage1.*' => 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence|max:10240',    
-        ]);
+        // $this->validate([
+        //     'eventImage1' => 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic',
+        // ]);
       
         Log::info($this->eventImage1);
 
@@ -243,13 +282,13 @@ class EditEvent extends Component
             $userName = Auth::user()->name;
             $enlace = url('/event') . '/' . $this->slug(0);
 
-            $envio = Mail::to(Auth::user()->email)
-                    ->send( new EventCreate(
-                        $userName, $enlace
-                    ) );
+            // $envio = Mail::to(Auth::user()->email)
+            //         ->send( new EventCreate(
+            //             $userName, $enlace
+            //         ) );
 
-            LOG::info('$envio');
-            LOG::info($envio);
+            // LOG::info('$envio');
+            // LOG::info($envio);
 
             session()->flash('message', 'successfully created event.');
             

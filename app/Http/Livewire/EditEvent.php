@@ -112,20 +112,16 @@ class EditEvent extends Component
         $objetos = [];
         $reglas = [];
 
-        $objetos['eventImage0'] = $this->existe(0);
-        $reglas['eventImage0'] = 'required|mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
+        $objetos['Image'] = $this->existe(0);
+        $reglas['Image'] = 'required|mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
 
         foreach($this->eventImage1 as $key => $val)
         {
             if ($key > 0) {
-                $objetos['eventImage'.$key] = $this->existe($key);
-                $reglas['eventImage'.$key] = 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
+                $objetos['Image '.$key] = $this->existe($key);
+                $reglas['Image '.$key] = 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
             }
         }
-        // Log::info('$objetos');
-        // Log::info($objetos);
-        // Log::info('$reglas');
-        // Log::info($reglas);
         
         $validator = Validator::make(
             // ['eventImage1' => $this->existe(0)],
@@ -140,29 +136,18 @@ class EditEvent extends Component
                 'mimes' => 'There is a problem with the file type, please select an image file type: Png, Jpg, Jpeg, Svg o Gif'
             ],
         )->validate();
-
-        // Log::info('$imagenesValidadas');
-        // Log::info($validator);
-
-        // $this->validate();
+        
+        $this->validate();
         
         // $this->validate([
         //     'eventImage1' => 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic',
         // ]);
-      
-        // Log::info($this->eventImage1[0]);
-        
-        // Log::info($this->eventImage1[0]);
 
         Log::info('desde save');
 
         if($this->evento){
 
             Log::info('desde save evento no es null');
-
-            // Log::info(array_key_exists(0,$this->eventImage1));
-            // Log::info(array_key_exists(1,$this->eventImage1));
-            // Log::info(array_key_exists(2,$this->eventImage1));
 
             if (array_key_exists(0,$this->eventImage1)) {
                 // $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', Str::substr($this->evento->eventImage1, 19));
@@ -201,11 +186,6 @@ class EditEvent extends Component
             }else{
                 $ruta3 = $this->evento->eventImage3;
             };
-
-            // Log::info($ruta1);
-            // Log::info($ruta2);
-            // Log::info($ruta3);
-            
             
             Event::find($this->evento->id)->update([
                 'user_id' => $this->evento->user_id,
@@ -238,10 +218,6 @@ class EditEvent extends Component
         }else{
             
             Log::info('desde save evento es null');
-            
-            // Log::info(array_key_exists(0,$this->eventImage1));
-            // Log::info(array_key_exists(1,$this->eventImage1));
-            // Log::info(array_key_exists(2,$this->eventImage1));
             
             if (array_key_exists(0,$this->eventImage1)) {
                 // $extencion1 = $this->eventImage1[0]->getClientOriginalExtension();

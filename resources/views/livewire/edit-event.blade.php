@@ -28,30 +28,32 @@
         <div class="card">
           <div class="card-body">
             <!-- General Form Elements -->
-            <form wire:submit.prevent="save()" enctype="multipart/form-data">
+            <!-- <form wire:submit.prevent="save()" enctype="multipart/form-data"> -->
+            <form method="POST" action="{{ route('store') }}" enctype="multipart/form-data">
+              @csrf
               <h5 class="card-title">Edit Event (section 1 - Required)</h5>
               <div class="row mb-3">
                 <label for="eventImage1" class="col-sm-2 col-form-label">Event image</label>
                 <div class="col-sm-10">
-                  <input class="form-control" type="file" wire:model='eventImage1' multiple>
+                  <input class="form-control" type="file" id='eventImage1' name='eventImage1[]' multiple=''>
                   <p class="small text-muted py-0 my-0">Select 3 images file type: Png, Jpg, Jpeg, Svg o Gif, Preference's of: 1024px x 580px</p>
                   <!-- id="eventImage1" name="eventImage1" -->
                 </div>
-                <div wire:loading wire:target='eventImage1'>Uploading...</div>
+                <!-- <div wire:loading wire:target='eventImage1'>Uploading...</div> -->
                 
-                @error('eventImage0')
+                @error('Image')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>{{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 @enderror
-                @error('eventImage1')
+                @error('Image 1')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>Image 2: {{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 @enderror
-                @error('eventImage2')
+                @error('Image 2')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>Image 3: {{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -61,7 +63,7 @@
 
               <div class="form-group">
                 <label for="title1">Tittle 1</label>
-                <input type="text" class="form-control" wire:model.defer='title1' placeholder="title1" >
+                <input type="text" class="form-control" id='title1' name='title1' placeholder="title1" value="{{$title1}}">
                 <!-- id="title1" name="title1" -->
                 @error('title1')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -73,7 +75,7 @@
 
               <div class="form-group">
                 <label for="description1">Description 1</label>
-                <textarea rows="3" class="form-control" wire:model.defer='description1' ></textarea>
+                <textarea rows="3" class="form-control" id='description1' name='description1' value="{{$description1}}" ></textarea>
                 <!-- id="description1" name="description1"  -->
                 @error('description1')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -87,8 +89,8 @@
 
               <div class="form-group">
                 <label for="title2">Tittle 2</label>
-                <input type="text" class="form-control" wire:model.defer='title2' placeholder="title2">
-                <!-- id="title2" name="title2"  -->
+                <input type="text" class="form-control" id='title2' name='title2' placeholder="title2" value="{{$title2}}">
+                
                 @error('title2')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>{{ $message }}</strong>
@@ -99,7 +101,7 @@
 
               <div class="form-group">
                 <label for="description2">Description 2</label>
-                <textarea rows="3" class="form-control" wire:model.defer='description2'></textarea>
+                <textarea rows="3" class="form-control" id='description2' name='description2' value="description2"></textarea>
                 <!-- id="description2" name="description2" -->
                 @error('description2')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -113,7 +115,7 @@
 
               <div class="form-group">
                 <label for="title3">Tittle 3</label>
-                <input type="text" class="form-control" wire:model.defer='title3' placeholder="title3">
+                <input type="text" class="form-control" id='title3' name='title3' placeholder="title3" value="{{$title3}}" >
                 <!-- id="title3" name="title3" -->
                 @error('title3')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -125,7 +127,7 @@
 
               <div class="form-group">
                 <label for="description3">Description 3</label>
-                <textarea rows="3" class="form-control" wire:model.defer='description3'></textarea>
+                <textarea rows="3" class="form-control" id='description3' name='description3' value="description3" ></textarea>
                 <!-- id="description3" name="description3" -->
                 @error('description3')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -152,9 +154,11 @@
                           <x-shared-popover-button :evento="$eventShared"/>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Save event</button>
+                    <!-- <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Save event</button> -->
+                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" >Save event</button>
                   @else
-                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Create event</button>
+                    <!-- <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Create event</button> -->
+                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" >Create event</button>
                   @endif
 
                 </div>
@@ -177,29 +181,32 @@
         <div class="card">
           <div class="card-body">
             <!-- General Form Elements -->
-            <form wire:submit.prevent="save()" enctype="multipart/form-data">
+            <!-- <form wire:submit.prevent="save()" enctype="multipart/form-data"> -->
+            <form method="POST" action="{{ route('store') }}" enctype="multipart/form-data">
+              @csrf
               <h5 class="card-title">Edit Event (section 1 - Required)</h5>
-              <div class="row mb-1">
+              <div class="row mb-3">
                 <label for="eventImage1" class="col-sm-2 col-form-label">Event image</label>
                 <div class="col-sm-10">
-                  <input class="form-control" type="file" wire:model='eventImage1' multiple>
+                  <input class="form-control" type="file" id='eventImage1' name='eventImage1[]' multiple=''>
                   <p class="small text-muted py-0 my-0">Select 3 images file type: Png, Jpg, Jpeg, Svg o Gif, Preference's of: 1024px x 580px</p>
+                  <!-- id="eventImage1" name="eventImage1" -->
                 </div>
-                <div wire:loading wire:target='eventImage1'>Uploading...</div>
+                <!-- <div wire:loading wire:target='eventImage1'>Uploading...</div> -->
                 
-                @error('eventImage0')
+                @error('Image')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>{{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 @enderror
-                @error('eventImage1')
+                @error('Image 1')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>Image 2: {{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 @enderror
-                @error('eventImage2')
+                @error('Image 2')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>Image 3: {{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -209,7 +216,7 @@
 
               <div class="form-group">
                 <label for="title1">Tittle 1</label>
-                <input type="text" class="form-control" wire:model.defer='title1' placeholder="title1" >
+                <input type="text" class="form-control" id='title1' name='title1' placeholder="title1" value="{{$title1}}">
                 <!-- id="title1" name="title1" -->
                 @error('title1')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -221,7 +228,7 @@
 
               <div class="form-group">
                 <label for="description1">Description 1</label>
-                <textarea rows="3" class="form-control" wire:model.defer='description1' ></textarea>
+                <textarea rows="3" class="form-control" id='description1' name='description1' value="{{$description1}}" ></textarea>
                 <!-- id="description1" name="description1"  -->
                 @error('description1')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -235,10 +242,10 @@
 
               <div class="form-group">
                 <label for="title2">Tittle 2</label>
-                <input type="text" class="form-control" wire:model.defer='title2' placeholder="title2">
-                <!-- id="title2" name="title2"  -->
+                <input type="text" class="form-control" id='title2' name='title2' placeholder="title2" value="{{$title2}}">
+                
                 @error('title2')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
                     <strong>{{ $message }}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -247,7 +254,7 @@
 
               <div class="form-group">
                 <label for="description2">Description 2</label>
-                <textarea rows="3" class="form-control" wire:model.defer='description2'></textarea>
+                <textarea rows="3" class="form-control" id='description2' name='description2' value="description2"></textarea>
                 <!-- id="description2" name="description2" -->
                 @error('description2')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -261,7 +268,7 @@
 
               <div class="form-group">
                 <label for="title3">Tittle 3</label>
-                <input type="text" class="form-control" wire:model.defer='title3' placeholder="title3">
+                <input type="text" class="form-control" id='title3' name='title3' placeholder="title3" value="{{$title3}}" >
                 <!-- id="title3" name="title3" -->
                 @error('title3')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -273,7 +280,7 @@
 
               <div class="form-group">
                 <label for="description3">Description 3</label>
-                <textarea rows="3" class="form-control" wire:model.defer='description3'></textarea>
+                <textarea rows="3" class="form-control" id='description3' name='description3' value="description3" ></textarea>
                 <!-- id="description3" name="description3" -->
                 @error('description3')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -297,9 +304,10 @@
                           <x-shared-popover-button :evento="$evento"/>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Save event</button>
+                    <!-- <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Save event</button> -->
+                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" >Save event</button>
                   @else
-                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light" wire:loading.class="disabled" wire:loading.attr="disabled" wire:target='eventImage1' >Create event</button>
+                    <button type="submit" class="btn btn-warning waves-effect waves-float waves-light">Create event</button>
                   @endif
 
                   @if($evento)

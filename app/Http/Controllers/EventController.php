@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 
 use App\Mail\EventCreate;
 use Illuminate\Support\Facades\Mail;
 
 use App\Models\Event;
 use App\Models\Notification;
-use App\Rules\FileType;
-
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Livewire\WithPagination;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -21,132 +18,155 @@ use Illuminate\Support\Str;
 
 use Intervention\Image\Facades\Image;
 
-class EditEvent extends Component
+
+class EventController extends Controller
 {
-    use WithFileUploads;
-    use WithPagination;
+    protected $eventImage1;
+    protected $title1;
+    protected $description1;
+    protected $title2;
+    protected $description2;
+    protected $title3;
+    protected $description3;
+    protected $duration;
+    protected $evento;
+    
+    public function __construct()
+    {
+        $this->eventImage1 = [];
+        $this->title1 = null;
+        $this->description1 = null;
+        $this->title2 = null;
+        $this->description2 = null;
+        $this->title3 = null;
+        $this->description3 = null;
+        $this->duration = null;
+        $this->evento = null;
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
 
-    public $eventImage1 = [];
-    public $title1;
-    public $description1;
-    //public $eventImage2;
-    public $title2;
-    public $description2;
-    //public $eventImage3;
-    public $title3;
-    public $description3;
-    public $duration;
-    public $evento;
-  
-    protected $rules = [
-        //'duration' => 'required',
-        //'eventImage1.*' => 'image',
-        'title1' => 'required',
-        'description1' => 'required',
-        //'eventImage2' => 'required|image|mimes:jpeg,png,jpg,gif,svg',        
-        //'title2' => 'required',
-        //'description2' => 'required',
-        //'eventImage3' => 'required|image|mimes:jpeg,png,jpg,gif,svg',        
-        //'title3' => 'required',
-        //'description3' => 'required'
-    ];
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
-    public function mount()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeCosa(Request $request)
+    {
+        $request->validate([
+            'title1' => 'required',
+            'description1' => 'required',
+        ]);
+
+        $this->eventImage1 = $request->file('eventImage1');
+        $this->title1 = $request->title1 ? $request->title1 : '';
+        $this->description1 = $request->description1 ? $request->description1 : '';
+        $this->title2 = $request->title2 ? $request->title2 : '';
+        $this->description2 = $request->description2 ? $request->description2 : '';
+        $this->title3 = $request->title3 ? $request->title3 : '';
+        $this->description3 = $request->description3 ? $request->description3 : '';
+        // $this->duration = $request->duration ? $request->duration : null;
+        // $this->evento = $request->evento ? $request->evento : null;
+
+    }
+
+    public function store(Request $request)
     {
         $this->evento = Event::where('user_id', Auth::user()->id)->first();
+
+        function existe($posicion,$eventImage1)
+        {
+          if (array_key_exists($posicion,$eventImage1)) {
+            return $eventImage1[$posicion];
+          }else{
+            return null;
+          };
+        }
+
+        function slug($title1,$valor)
+        {
+            $unidad = $valor ?? null;
+
+            $valorAleatorio = uniqid();
+            $slug = Str::of($title1)->slug($title1,"-")->limit(255 - mb_strlen($valorAleatorio) - 1, "")->trim("-")->append("-", $valorAleatorio).Str::of($unidad);
+
+            Log::info('un slug');
+            Log::info($slug ?? 'no hay evento');
+            Log::info('cierro slug');
+
+            return $slug;
+        }
         
         if ($this->evento) {
-            $this->eventImage1 = []; //$this->evento->eventImage2;
-            $this->title1 = $this->evento->title1;
-            $this->description1 = $this->evento->description1;
-            //$this->eventImage2 = $this->evento->eventImage2;
-            $this->title2 = $this->evento->title2;
-            $this->description2 = $this->evento->description2;
-            //$this->eventImage3 = $this->evento->eventImage3;
-            $this->title3 = $this->evento->title3;
-            $this->description3 = $this->evento->description3;
-            $this->duration = 30;
+            $this->eventImage1 = $request->file('eventImage1') ? $request->file('eventImage1') : [];
+            $this->title1 = $request->title1 ? $request->title1 : $this->evento->title1;
+            $this->description1 = $request->description1 ? $request->description1 : $this->evento->description1;
+            $this->title2 = $request->title2 ? $request->title2 : $this->evento->title2;
+            $this->description2 = $request->description2 ? $request->description2 : $this->evento->description2;
+            $this->title3 = $request->title3 ? $request->title3 : $this->evento->title3;
+            $this->description3 = $request->description3 ? $request->description3 : $this->evento->description3;
+            $this->duration = $this->evento->duration;
         }else{
-            $this->eventImage1 = [];
-            $this->title1 = '';
-            $this->description1 = '';
-            //$this->eventImage2 = null;
-            $this->title2 = '';
-            $this->description2 = '';
-            //$this->eventImage3 = null;
-            $this->title3 = '';
-            $this->description3 = '';
+            $request->validate([
+                'title1' => 'required',
+                'description1' => 'required',
+            ]);
+            $this->title1 = $request->title1 ? $request->title1 : '';
+            $this->description1 = $request->description1 ? $request->description1 : '';
+
+            $this->eventImage1 = $request->file('eventImage1') ? $request->file('eventImage1') : [];
+
+            $objetos = [];
+            $reglas = [];
+
+            $objetos['Image'] = existe(0,$this->eventImage1);
+            $reglas['Image'] = 'required|mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
+
+            foreach($this->eventImage1 as $key => $val)
+            {
+                if ($key > 0) {
+                    $objetos['Image '.$key] = existe($key,$this->eventImage1);
+                    $reglas['Image '.$key] = 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
+                }
+            }
+            
+            $validator = Validator::make(
+                $objetos,
+                $reglas,
+                [
+                    'required' => 'The Event Image field is required',
+                    'mimes' => 'There is a problem with the file type, please select an image file type: Png, Jpg, Jpeg, Svg o Gif'
+                ],
+            )->validate();
+
+            $this->title2 = $request->title2 ? $request->title2 : '';
+            $this->description2 = $request->description2 ? $request->description2 : '';
+            $this->title3 = $request->title3 ? $request->title3 : '';
+            $this->description3 = $request->description3 ? $request->description3 : '';
             $this->duration = 30;
         }
-
-        Log::info('desde el mount');
-        Log::info($this->evento ?? 'no hay evento');
-        Log::info('cierro desde el mount');
-    }
-
-    public function slug($valor)
-    {
-        $unidad = $valor ?? null;
-
-        $valorAleatorio = uniqid();
-        $slug = Str::of($this->title1)->slug("-")->limit(255 - mb_strlen($valorAleatorio) - 1, "")->trim("-")->append("-", $valorAleatorio).Str::of($unidad);
-
-        Log::info('un slug');
-        Log::info($slug ?? 'no hay evento');
-        Log::info('cierro slug');
-
-        return $slug;
-    }
-  
-    public function existe($posicion)
-    {
-      if (array_key_exists($posicion,$this->eventImage1)) {
-        return $this->eventImage1[$posicion];
-      }else{
-        return null;
-      };
-    }
-
-    public function save()
-    {
-        $objetos = [];
-        $reglas = [];
-
-        $objetos['Image'] = $this->existe(0);
-        $reglas['Image'] = 'required|mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
-
-        foreach($this->eventImage1 as $key => $val)
-        {
-            if ($key > 0) {
-                $objetos['Image '.$key] = $this->existe($key);
-                $reglas['Image '.$key] = 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic';
-            }
-        }
-        
-        $validator = Validator::make(
-            // ['eventImage1' => $this->existe(0)],
-            $objetos,
-            $reglas,
-            // [
-            //     'eventImage1' => 'required',
-            //     'eventImage1' => 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic',
-            // ],
-            [
-                'required' => 'The Event Image field is required',
-                'mimes' => 'There is a problem with the file type, please select an image file type: Png, Jpg, Jpeg, Svg o Gif'
-            ],
-        )->validate();
-        
-        $this->validate();
-        
-        // $this->validate([
-        //     'eventImage1' => 'mimes:jpeg,png,jpg,gif,svg,image/heif,image/heic,image/heif-sequence,image/heic-sequence,heif,heic',
-        // ]);
 
         Log::info('desde save');
 
         if($this->evento){
-
             Log::info('desde save evento no es null');
 
             if (array_key_exists(0,$this->eventImage1)) {
@@ -214,16 +234,15 @@ class EditEvent extends Component
             ]);
 
             session()->flash('message', 'successfully update event.');
-
         }else{
             
             Log::info('desde save evento es null');
             
             if (array_key_exists(0,$this->eventImage1)) {
                 // $extencion1 = $this->eventImage1[0]->getClientOriginalExtension();
-                // $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', $this->slug(1).'.'.$extencion1);
+                // $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', slug($this->title1,1).'.'.$extencion1);
                 // $ruta1 = 'storage/' . Str::substr($storedImage1, 7);
-                $name = 'eventImage/'. $this->slug(1).'.'.'jpg';
+                $name = 'eventImage/'. slug($this->title1,1).'.'.'jpg';
                 $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
                 $img->resize(1024, 540);
                 $img->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
@@ -234,9 +253,9 @@ class EditEvent extends Component
 
             if (array_key_exists(1,$this->eventImage1)) {
                 // $extencion2 = $this->eventImage1[1]->getClientOriginalExtension();
-                // $storedImage2 = $this->eventImage1[1]->storeAs('public/eventImage', $this->slug(2).'.'.$extencion2);
+                // $storedImage2 = $this->eventImage1[1]->storeAs('public/eventImage', slug($this->title1,2).'.'.$extencion2);
                 // $ruta2 = 'storage/' . Str::substr($storedImage2, 7);
-                $name = 'eventImage/'. $this->slug(2).'.'.'jpg';
+                $name = 'eventImage/'. slug($this->title1,2).'.'.'jpg';
                 $img2 = Image::make($this->eventImage1[1])->encode('jpg', 75);
                 $img2->resize(1024, 540);
                 $img2->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
@@ -249,9 +268,9 @@ class EditEvent extends Component
 
             if (array_key_exists(2,$this->eventImage1)) {
                 // $extencion3 = $this->eventImage1[2]->getClientOriginalExtension();
-                // $storedImage3 = $this->eventImage1[2]->storeAs('public/eventImage', $this->slug(3).'.'.$extencion3);
+                // $storedImage3 = $this->eventImage1[2]->storeAs('public/eventImage', slug($this->title1,3).'.'.$extencion3);
                 // $ruta3 = 'storage/' . Str::substr($storedImage3, 7);
-                $name = 'eventImage/'. $this->slug(3).'.'.'jpg';
+                $name = 'eventImage/'. slug($this->title1,3).'.'.'jpg';
                 $img3 = Image::make($this->eventImage1[2])->encode('jpg', 75);
                 $img3->resize(1024, 540);
                 $img3->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
@@ -264,7 +283,7 @@ class EditEvent extends Component
             
             $eventoNuevo = Event::create([
                 'user_id' => Auth::user()->id,
-                'slug' => $this->slug(0),
+                'slug' => slug($this->title1,0),
                 'duration' => $this->duration,
                 'eventImage1' => $ruta1,
                 'title1' => $this->title1,
@@ -289,7 +308,7 @@ class EditEvent extends Component
             ]);
 
             $userName = Auth::user()->name;
-            $enlace = url('/event') . '/' . $this->slug(0);
+            $enlace = url('/event') . '/' . slug($this->title1,0);
 
             // $envio = Mail::to(Auth::user()->email)
             //         ->send( new EventCreate(
@@ -304,42 +323,52 @@ class EditEvent extends Component
         }
 
       // $this->mount();
-      redirect('/editevent');
+      return redirect('/editevent');
+      
     }
 
-    public function logged($data){
-        Log::info($data);
-    }
-  
-    public function borrar(){
-        Log::info('se borrara evento');
-        
-        $notificar = Notification::create([
-            'user_id' => Auth::user()->id,
-            'receiver_id' => 1,
-            'event_id' => $this->evento->id,
-            'view' => false,
-            'success' => 4,
-            'deleted_receiver' => false,
-        ]);
-
-        Log::info('$notificar');
-        Log::info($notificar);
-
-        Event::find($this->evento->id)->delete();
-        
-        session()->flash('message', 'evento borrado correctamente.');
-        
-        Log::info($this->evento);
-
-        
-        $this->mount();
-    }
-
-    public function render()
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        
-        return view('livewire.edit-event');
-            
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

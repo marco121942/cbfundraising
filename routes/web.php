@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Event;
 use App\Mail\EventCreate;
 
+use App\Http\Controllers\EventController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,12 +46,14 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/dashboard', App\Http\Livewire\Dashboard::class )->name('dashboard');
-    
+
     Route::get('/editevent', App\Http\Livewire\EditEvent::class )->name('editevent');
 
     Route::get('/generaltable', App\Http\Livewire\GeneralTable::class )->name('generaltable');
 
     Route::get('/faq', App\Http\Livewire\Faq::class )->name('faq');
+
+    Route::post('/store', 'App\Http\Controllers\EventController@store' )->name('store');
     
 });
 

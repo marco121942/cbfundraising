@@ -28,7 +28,14 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url({{url('/')}}/{{ $evento->eventImage1 }});">
+        @php
+            $imagen1 = urlencode($evento->eventImage1);
+            $imagen1 = str_replace('+','%20',$imagen1);
+            $imagen1 = str_replace('_','%5F',$imagen1);
+            $imagen1 = str_replace('.','%2E',$imagen1);
+            $imagen1 = str_replace('-','%2D',$imagen1);
+        @endphp
+        <div class="carousel-item active" style="background-image: url({{url('/')}}/{{ $imagen1 }});">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
               <h2 class="text-center">{{ $evento->title1 }}</h2>
@@ -38,7 +45,14 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url({{url('/')}}/{{ $evento->eventImage2 }});">
+        @php
+            $imagen2 = urlencode($evento->eventImage2);
+            $imagen2 = str_replace('+','%20',$imagen2);
+            $imagen2 = str_replace('_','%5F',$imagen2);
+            $imagen2 = str_replace('.','%2E',$imagen2);
+            $imagen2 = str_replace('-','%2D',$imagen2);
+        @endphp
+        <div class="carousel-item" style="background-image: url({{url('/')}}/{{ $imagen2 }});">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
               <h2 class="text-center" >{{ $evento->title2 }}</h2>
@@ -48,7 +62,14 @@
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url({{url('/')}}/{{ $evento->eventImage3 }});">
+        @php
+            $imagen3 = urlencode($evento->eventImage3);
+            $imagen3 = str_replace('+','%20',$imagen3);
+            $imagen3 = str_replace('_','%5F',$imagen3);
+            $imagen3 = str_replace('.','%2E',$imagen3);
+            $imagen3 = str_replace('-','%2D',$imagen3);
+        @endphp
+        <div class="carousel-item" style="background-image: url({{url('/')}}/{{ $imagen3 }});">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
               <h2 class="text-center" >{{ $evento->title3 }}</h2>

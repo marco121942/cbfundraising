@@ -27,11 +27,7 @@
 
       <div class="carousel-inner" role="listbox">
         @php
-            $imagen1 = urlencode($evento->eventImage1);
-            $imagen1 = str_replace('+','%20',$imagen1);
-            $imagen1 = str_replace('_','%5F',$imagen1);
-            $imagen1 = str_replace('.','%2E',$imagen1);
-            $imagen1 = str_replace('-','%2D',$imagen1);
+            $imagen1 = str_replace(' ','%20',$evento->eventImage1);
         @endphp
 
         <!-- Slide 1 -->
@@ -48,11 +44,7 @@
         @if($evento->description2)
 
         @php
-            $imagen2 = urlencode($evento->eventImage2);
-            $imagen2 = str_replace('+','%20',$imagen2);
-            $imagen2 = str_replace('_','%5F',$imagen2);
-            $imagen2 = str_replace('.','%2E',$imagen2);
-            $imagen2 = str_replace('-','%2D',$imagen2);
+            $imagen2 = str_replace(' ','%20',$evento->eventImage2);
         @endphp
 
         <!-- Slide 2 -->
@@ -70,11 +62,7 @@
         @if($evento->title3)
         @if($evento->description3)
         @php
-            $imagen3 = urlencode($evento->eventImage3);
-            $imagen3 = str_replace('+','%20',$imagen3);
-            $imagen3 = str_replace('_','%5F',$imagen3);
-            $imagen3 = str_replace('.','%2E',$imagen3);
-            $imagen3 = str_replace('-','%2D',$imagen3);
+            $imagen3 = str_replace(' ','%20',$evento->eventImage3);
         @endphp
         <!-- Slide 3 -->
         <div class="carousel-item" style="background-image: url({{url('/')}}/{{ $imagen3 }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">

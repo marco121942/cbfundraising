@@ -26,13 +26,9 @@
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
       <div class="carousel-inner" role="listbox">
-        @php
-            //$imagen1 = $evento->eventImage1;
-            //$imagen1 = str_replace(' ','%20',$imagen1);
-        @endphp
-
+        
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url({{url('/')}}/{{ str_replace(' ','%20',$evento->eventImage1) }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">
+        <div class="carousel-item active" style="background-image: url({{url('/')}}/{{ Str::replace(' ','%20',$evento->eventImage1) }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
               <h2 class="text-center" >{{ $evento->title1 }}</h2>
@@ -44,13 +40,8 @@
         @if($evento->title2)
         @if($evento->description2)
 
-        @php
-            //$imagen2 = $evento->eventImage2;
-            //$imagen2 = ;
-        @endphp
-
         <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url({{url('/')}}/{{ str_replace(' ','%20',$evento->eventImage2) }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">
+        <div class="carousel-item" style="background-image: url({{url('/')}}/{{ Str::replace(' ','%20',$evento->eventImage2) }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
               <h2 class="text-center" >{{ $evento->title2 }}</h2>
@@ -63,12 +54,9 @@
     
         @if($evento->title3)
         @if($evento->description3)
-        @php
-            //$imagen3 = $evento->eventImage3;
-            //$imagen3 = str_replace(' ','%20',$imagen3);
-        @endphp
+        
         <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url({{url('/')}}/{{ str_replace(' ','%20',$evento->eventImage3) }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">
+        <div class="carousel-item" style="background-image: url({{url('/')}}/{{ Str::replace(' ','%20',$evento->eventImage3) }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
               <h2 class="text-center" >{{ $evento->title3 }}</h2>

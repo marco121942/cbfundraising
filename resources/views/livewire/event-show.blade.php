@@ -27,7 +27,8 @@
 
       <div class="carousel-inner" role="listbox">
         @php
-            $imagen1 = str_replace(' ','%20',$evento->eventImage1);
+            $imagen1 = $evento->eventImage1;
+            $imagen1 = str_replace(' ','%20',$imagen1);
         @endphp
 
         <!-- Slide 1 -->
@@ -44,7 +45,8 @@
         @if($evento->description2)
 
         @php
-            $imagen2 = str_replace(' ','%20',$evento->eventImage2);
+            $imagen2 = $evento->eventImage2;
+            $imagen2 = str_replace(' ','%20',$imagen2);
         @endphp
 
         <!-- Slide 2 -->
@@ -62,7 +64,8 @@
         @if($evento->title3)
         @if($evento->description3)
         @php
-            $imagen3 = str_replace(' ','%20',$evento->eventImage3);
+            $imagen3 = $evento->eventImage3;
+            $imagen3 = str_replace(' ','%20',$imagen3);
         @endphp
         <!-- Slide 3 -->
         <div class="carousel-item" style="background-image: url({{url('/')}}/{{ $imagen3 }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">

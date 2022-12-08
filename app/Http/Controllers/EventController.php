@@ -173,7 +173,8 @@ class EventController extends Controller
                 // $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', Str::substr($this->evento->eventImage1, 19));
                 $name = 'eventImage/'. Str::substr($this->evento->eventImage1, 19);
                 $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
-                $img->adaptiveResizeImage(1024,768);
+                $img->resizeImage(1024,null);
+                $img->resizeImage(null,768);
                 $img->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img->save(public_path('storage/'). $name);
 
@@ -186,7 +187,8 @@ class EventController extends Controller
                 // $storedImage2 = $this->eventImage1[1]->storeAs('public/eventImage', Str::substr($this->evento->eventImage2, 19));
                 $name = 'eventImage/'. Str::substr($this->evento->eventImage2, 19);
                 $img2 = Image::make($this->eventImage1[1])->encode('jpg', 75);
-                $img2->resizeCanvas(1024, 540, 'center', false, '808080');
+                $img2->resizeImage(1024,null);
+                $img2->resizeImage(null,768);
                 $img2->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img2->save(public_path('storage/'). $name);
 
@@ -199,7 +201,8 @@ class EventController extends Controller
                 // $storedImage3 = $this->eventImage1[2]->storeAs('public/eventImage', Str::substr($this->evento->eventImage3, 19));
                 $name = 'eventImage/'. Str::substr($this->evento->eventImage3, 19);
                 $img3 = Image::make($this->eventImage1[2])->encode('jpg', 75);
-                $img3->resizeCanvas(1024, 540, 'center', false, '808080');
+                $img3->resizeImage(1024,null);
+                $img3->resizeImage(null,768);
                 $img3->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img3->save(public_path('storage/'). $name);
                 $ruta3 = $this->evento->eventImage3;
@@ -238,13 +241,15 @@ class EventController extends Controller
             
             Log::info('desde save evento es null');
             // $img -> resizeCanvas(1024, 540, 'center', false, '808080');
+
             if (array_key_exists(0,$this->eventImage1)) {
                 // $extencion1 = $this->eventImage1[0]->getClientOriginalExtension();
                 // $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', slug($this->title1,1).'.'.$extencion1);
                 // $ruta1 = 'storage/' . Str::substr($storedImage1, 7);
                 $name = 'eventImage/'. slug($this->title1,1).'.'.'jpg';
                 $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
-                $img->adaptiveResizeImage(1024,768);
+                $img->resizeImage(1024,null);
+                $img->resizeImage(null,768);
                 $img->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img->save(public_path('storage/'). $name);
 
@@ -257,7 +262,9 @@ class EventController extends Controller
                 // $ruta2 = 'storage/' . Str::substr($storedImage2, 7);
                 $name = 'eventImage/'. slug($this->title1,2).'.'.'jpg';
                 $img2 = Image::make($this->eventImage1[1])->encode('jpg', 75);
-                $img2->resizeCanvas(1024, 540, 'center', false, '808080');
+                
+                $img2->resizeImage(1024,null);
+                $img2->resizeImage(null,768);
                 $img2->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img2->save(public_path('storage/'). $name);
 
@@ -272,7 +279,9 @@ class EventController extends Controller
                 // $ruta3 = 'storage/' . Str::substr($storedImage3, 7);
                 $name = 'eventImage/'. slug($this->title1,3).'.'.'jpg';
                 $img3 = Image::make($this->eventImage1[2])->encode('jpg', 75);
-                $img3->resizeCanvas(1024, 540, 'center', false, '808080');
+                
+                $img3->resizeImage(1024,null);
+                $img3->resizeImage(null,768);
                 $img3->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img3->save(public_path('storage/'). $name);
 

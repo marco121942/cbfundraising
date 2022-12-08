@@ -173,8 +173,8 @@ class EventController extends Controller
                 // $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', Str::substr($this->evento->eventImage1, 19));
                 $name = 'eventImage/'. Str::substr($this->evento->eventImage1, 19);
                 $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
-                $img->resizeImage(1024,null);
-                $img->resizeImage(null,768);
+                $img->resize(1024,null);
+                $img->resize(null,768);
                 $img->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img->save(public_path('storage/'). $name);
 
@@ -248,8 +248,8 @@ class EventController extends Controller
                 // $ruta1 = 'storage/' . Str::substr($storedImage1, 7);
                 $name = 'eventImage/'. slug($this->title1,1).'.'.'jpg';
                 $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
-                $img->resizeImage(1024,null);
-                $img->resizeImage(null,768);
+                $img->resize(1024,null);
+                $img->resize(null,768);
                 $img->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img->save(public_path('storage/'). $name);
 

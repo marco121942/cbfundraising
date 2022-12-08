@@ -174,7 +174,7 @@ class EventController extends Controller
                 $name = 'eventImage/'. Str::substr($this->evento->eventImage1, 19);
                 $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
                 $img->resize(1024,null);
-                $img->resize(null,768);
+                $img->resizeCanvas(1024,768);
                 $img->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img->save(public_path('storage/'). $name);
 
@@ -249,7 +249,7 @@ class EventController extends Controller
                 $name = 'eventImage/'. slug($this->title1,1).'.'.'jpg';
                 $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
                 $img->resize(1024,null);
-                $img->resize(null,768);
+                $img->resizeCanvas(1024,768);
                 $img->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img->save(public_path('storage/'). $name);
 

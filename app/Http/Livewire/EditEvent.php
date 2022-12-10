@@ -153,11 +153,15 @@ class EditEvent extends Component
                 // $storedImage1 = $this->eventImage1[0]->storeAs('public/eventImage', Str::substr($this->evento->eventImage1, 19));
                 $name = 'eventImage/'. Str::substr($this->evento->eventImage1, 19);
                 $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
-                $img->resize(1024, 540);
+                $img->resize(1024,540, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
                 $img->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img->save(public_path('storage/'). $name);
 
                 $ruta1 = $this->evento->eventImage1;
+                $img->destroy();
             }else{
                 $ruta1 = $this->evento->eventImage1;
             };
@@ -166,11 +170,15 @@ class EditEvent extends Component
                 // $storedImage2 = $this->eventImage1[1]->storeAs('public/eventImage', Str::substr($this->evento->eventImage2, 19));
                 $name = 'eventImage/'. Str::substr($this->evento->eventImage2, 19);
                 $img2 = Image::make($this->eventImage1[1])->encode('jpg', 75);
-                $img2->resize(1024, 540);
+                $img2->resize(1024,540, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
                 $img2->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img2->save(public_path('storage/'). $name);
 
                 $ruta2 = $this->evento->eventImage2;
+                $img2->destroy();
             }else{
                 $ruta2 = $this->evento->eventImage2;
             };
@@ -179,10 +187,14 @@ class EditEvent extends Component
                 // $storedImage3 = $this->eventImage1[2]->storeAs('public/eventImage', Str::substr($this->evento->eventImage3, 19));
                 $name = 'eventImage/'. Str::substr($this->evento->eventImage3, 19);
                 $img3 = Image::make($this->eventImage1[2])->encode('jpg', 75);
-                $img3->resize(1024, 540);
+                $img3->resize(1024,540, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
                 $img3->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img3->save(public_path('storage/'). $name);
                 $ruta3 = $this->evento->eventImage3;
+                $img3->destroy();
             }else{
                 $ruta3 = $this->evento->eventImage3;
             };
@@ -225,11 +237,15 @@ class EditEvent extends Component
                 // $ruta1 = 'storage/' . Str::substr($storedImage1, 7);
                 $name = 'eventImage/'. $this->slug(1).'.'.'jpg';
                 $img = Image::make($this->eventImage1[0])->encode('jpg', 75);
-                $img->resize(1024, 540);
+                $img->resize(1024,540, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
                 $img->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img->save(public_path('storage/'). $name);
 
                 $ruta1 = 'storage/' . $name;
+                $img->destroy();
             };
 
             if (array_key_exists(1,$this->eventImage1)) {
@@ -238,11 +254,15 @@ class EditEvent extends Component
                 // $ruta2 = 'storage/' . Str::substr($storedImage2, 7);
                 $name = 'eventImage/'. $this->slug(2).'.'.'jpg';
                 $img2 = Image::make($this->eventImage1[1])->encode('jpg', 75);
-                $img2->resize(1024, 540);
+                $img2->resize(1024,540, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
                 $img2->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img2->save(public_path('storage/'). $name);
 
                 $ruta2 = 'storage/' . $name;
+                $img2->destroy();
             }else{
                 $ruta2 = $ruta1;
             };
@@ -253,11 +273,15 @@ class EditEvent extends Component
                 // $ruta3 = 'storage/' . Str::substr($storedImage3, 7);
                 $name = 'eventImage/'. $this->slug(3).'.'.'jpg';
                 $img3 = Image::make($this->eventImage1[2])->encode('jpg', 75);
-                $img3->resize(1024, 540);
+                $img3->resize(1024,540, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
                 $img3->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img3->save(public_path('storage/'). $name);
 
                 $ruta3 = 'storage/' . $name;
+                $img3->destroy();
             }else{
                 $ruta3 = $ruta1;
             };

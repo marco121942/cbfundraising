@@ -182,6 +182,7 @@ class EventController extends Controller
                 $img->save(public_path('storage/'). $name);
 
                 $ruta1 = $this->evento->eventImage1;
+                $img->destroy();
             }else{
                 $ruta1 = $this->evento->eventImage1;
             };
@@ -197,6 +198,7 @@ class EventController extends Controller
                 });
                 $img2->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img2->save(public_path('storage/'). $name);
+                $img2->destroy();
 
                 $ruta2 = $this->evento->eventImage2;
             }else{
@@ -214,6 +216,7 @@ class EventController extends Controller
                 });
                 $img3->insert(public_path('assets/img/android-icon-72x72.png'), 'bottom-right', 10, 10);
                 $img3->save(public_path('storage/'). $name);
+                $img3->destroy();
                 $ruta3 = $this->evento->eventImage3;
             }else{
                 $ruta3 = $this->evento->eventImage3;
@@ -266,6 +269,7 @@ class EventController extends Controller
                 $img->save(public_path('storage/'). $name);
 
                 $ruta1 = 'storage/' . $name;
+                $img->destroy();
             };
 
             if (array_key_exists(1,$this->eventImage1)) {
@@ -284,6 +288,7 @@ class EventController extends Controller
                 $img2->save(public_path('storage/'). $name);
 
                 $ruta2 = 'storage/' . $name;
+                $img2->destroy();
             }else{
                 $ruta2 = $ruta1;
             };
@@ -304,6 +309,7 @@ class EventController extends Controller
                 $img3->save(public_path('storage/'). $name);
 
                 $ruta3 = 'storage/' . $name;
+                $img3->destroy();
             }else{
                 $ruta3 = $ruta1;
             };

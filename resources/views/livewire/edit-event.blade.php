@@ -367,6 +367,8 @@
    });
   </script>
   <script>
+
+    let sistemFile = null;
     function isHEIC(file) {
         let x = file.type ? file.type.split('image/').pop() : file.name.split('.').pop().toLowerCase();
         return x == 'heic' || x == 'heif';
@@ -409,88 +411,166 @@
       output.classList.add("d-none");
       output.innerHTML = '';
 
-      const result = [];
-
-      for (const file of eventImage1.files) {
-        if(file.name !== idImg){
-          const url = URL.createObjectURL(file);
+      let result = [];
+      let i = 1;
+      console.log('length de files: '+sistemFile.length);
+      for (var j = sistemFile.length - 1; j >= 0 ; j--) {
+        const filete = sistemFile[j];
+        console.log(filete);
+        if(filete.name !== idImg){
+          const url = URL.createObjectURL(filete);
           const newElement = document.createElement("div");
           newElement.classList.add("col-6");
           newElement.classList.add("col-md-4");
+          newElement.classList.add("mx-auto");
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
                                     <div class="card-body bg-light">
-                                      <a href="#" onclick="girar('${file.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
-                                      <a href="#" onclick="borrar('${file.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                      <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
+                                      <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                      <h1>Event Image ${i}</h1>
                                     </div>
                                   </div>`;
           
           output.appendChild(newElement);
-          result.push(file);
+          result.push(filete);
+          i++;
         };
       };
       const fileList = new FileListItem(result);
+      if (fileList.length > 3) {fileList.length = 3;};
       
       eventImage1.files = null;
       eventImage1.files = fileList;
+
+      sistemFile = null;
+      sistemFile = fileList;
+
+      console.log(sistemFile);
+      console.log(eventImage1.files);
       
       spinner.classList.add("d-none");
       output.classList.remove("d-none");
     };
 
-    function girar(idImg){
-      alert('todavia no e programado el giro');
-      // const spinner = document.getElementById('spinner');
-      // const output = document.getElementById('preview');
-      // spinner.classList.remove("d-none");
-      // output.classList.add("d-none");
-      // output.innerHTML = '';
+    async function girar(idImg){
+      const spinner = document.getElementById('spinner');
+      const output = document.getElementById('preview');
+      spinner.classList.remove("d-none");
+      output.classList.add("d-none");
+      output.innerHTML = '';
 
-      // const result = [];
+      let resultado = [];
+      let k = 1;
+      console.log('length de files: '+sistemFile.length);
+      for (var q = sistemFile.length - 1; q >= 0 ; q--) {
+        const filete = sistemFile[q];
+        if(filete.name !== idImg){
+          const url = URL.createObjectURL(filete);
+          const newElement = document.createElement("div");
+          newElement.classList.add("col-6");
+          newElement.classList.add("col-md-4");
+          newElement.classList.add("mx-auto");
+          newElement.innerHTML = `<div class="card">
+                                    <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
+                                    </div>
+                                    <div class="card-body bg-light">
+                                      <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
+                                      <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                      <h1>Event Image ${k}</h1>
+                                    </div>
+                                  </div>`;
+          
+          output.appendChild(newElement);
+          resultado.push(filete);
+          k++;
+        }else{
+          async function girarAsincrona (fileteando) {
+            const canvas = await document.createElement('canvas');
+            const ctx = await  canvas.getContext('2d');
+            const nameFilete = fileteando.name;
 
-      // for (const file of eventImage1.files) {
-      //   if(file.name !== idImg){
-      //     const url = URL.createObjectURL(file);
-      //     const newElement = document.createElement("div");
-      //     newElement.classList.add("col-6");
-      //     newElement.classList.add("col-md-4");
-      //     newElement.innerHTML = `<div class="card">
-      //                               <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
-      //                               </div>
-      //                               <div class="card-body bg-light">
-      //                                 <a href="#" onclick="girar('${file.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
-      //                                 <a href="#" onclick="borrar('${file.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-      //                               </div>
-      //                             </div>`;
+            const img = await fileteando.image();
+
+            // calculate new size
+            const widthImg = await img.width;
+            const heightImg = await img.height;
+            // const width = 1024;
+            // const height = 540;
+            let width = 1024;
+            let height = 1024;
+            if (widthImg > heightImg) {
+              width = widthImg;
+              height = widthImg;
+            } else if (widthImg < heightImg) {
+              width = heightImg;
+              height = heightImg;
+            };
+
+            console.log('width');
+            console.log(width);
+            console.log('height');
+            console.log(height);
+
+            // resize the canvas to the new dimensions
+            canvas.width = width;
+            canvas.height = height;
+
+            await ctx.translate(width / 2, height / 2);
+
+            await ctx.rotate(Math.PI / 180 * -90); //Math.PI/180 * 5
+
+            // scale & draw the image onto the canvas
+            await ctx.drawImage(img, -img.width/2, -img.height/2, widthImg, heightImg); //, width, height
+            
+            // Get the binary (aka blob)
+            const blob = await new Promise(rs => canvas.toBlob(rs, 1));
+            // const blob = new Promise(rs => canvas.toBlob(rs, 1));
+            const resizedFile = await new File([blob], nameFilete, fileteando);
+            console.log('resizedFile');
+            console.log(resizedFile);
+            
+            const url = await  URL.createObjectURL(resizedFile);
+            const newElement = await document.createElement("div");
+            newElement.classList.add("col-6");
+            newElement.classList.add("col-md-4");
+            newElement.classList.add("mx-auto");
+            newElement.innerHTML = `<div class="card">
+                                      <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
+                                      </div>
+                                      <div class="card-body bg-light">
+                                        <a href="#" onclick="girar('${nameFilete}')" class="btn btn-outline-primary waves-effect">Girar</a>
+                                        <a href="#" onclick="borrar('${nameFilete}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                        <h1>Event Image ${k}</h1>
+                                      </div>
+                                    </div>`;
+            
+            await output.appendChild(newElement);
+            await resultado.push(resizedFile);
+          };
+
+          await girarAsincrona(filete)
           
-      //     output.appendChild(newElement);
-      //     result.push(file);
-      //   }else{
-      //     const url = URL.createObjectURL(file);
-      //     const newElement = document.createElement("div");
-      //     newElement.classList.add("col-6");
-      //     newElement.classList.add("col-md-4");
-      //     newElement.innerHTML = `<div class="card">
-      //                               <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
-      //                               </div>
-      //                               <div class="card-body bg-light">
-      //                                 <a href="#" onclick="girar('${file.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
-      //                                 <a href="#" onclick="borrar('${file.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-      //                               </div>
-      //                             </div>`;
-          
-      //     output.appendChild(newElement);
-      //     result.push(file);
-      //   };
-      // };
-      // const fileList = new FileListItem(result);
+          k++;
+        };
+      };
+      const fileList = await new FileListItem(resultado);
+      if (fileList.length > 3) {fileList.length = 3;};
       
-      // eventImage1.files = null;
-      // eventImage1.files = fileList;
+      eventImage1.files = null;
+      eventImage1.files = fileList;
+
+      sistemFile = null;
+      sistemFile = fileList;
+
+      console.log('sistemFile');
+      console.log(sistemFile);
+      console.log('eventImage1.files');
+      console.log(eventImage1.files);
       
-      // spinner.classList.add("d-none");
-      // output.classList.remove("d-none");
+      spinner.classList.add("d-none");
+      output.classList.remove("d-none");
     };
 
     eventImage1.onchange = async function change() {
@@ -504,9 +584,33 @@
 
       const maxWidth = 1024;
       const maxHeight = 540;
-      const result = [];
+      let result = [];
+      let i = 1;
+      if (sistemFile) {
+        result.push(...sistemFile);
+        for (const file of result) {
+          const url = URL.createObjectURL(file);
+          const newElement = document.createElement("div");
+          newElement.classList.add("col-6");
+          newElement.classList.add("col-md-4");
+          newElement.classList.add("mx-auto");
+          newElement.innerHTML = `<div class="card">
+                                    <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
+                                    </div>
+                                    <div class="card-body bg-light">
+                                      <a href="#" onclick="girar('${file.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
+                                      <a href="#" onclick="borrar('${file.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                      <h1>Event Image ${i}</h1>
+                                    </div>
+                                  </div>`;
+          
+          output.appendChild(newElement);
+          i++;
+        };
+      }
 
       for (const filet of this.files) {
+        if (result.length <= 2) {
           file = await convertHEIC(filet);
           
           const canvas = document.createElement('canvas');
@@ -541,31 +645,40 @@
           const newElement = document.createElement("div");
           newElement.classList.add("col-6");
           newElement.classList.add("col-md-4");
+          newElement.classList.add("mx-auto");
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
                                     <div class="card-body bg-light">
                                       <a href="#" onclick="girar('${nameFile}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                       <a href="#" onclick="borrar('${nameFile}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                      <h1>Event Image ${i}</h1>
                                     </div>
                                   </div>`;
           
           output.appendChild(newElement);
           result.push(resizedFile);
+          i++;
+        }
       }
-      
+
       const fileList = new FileListItem(result);
-      
-      // temporary remove event listener since
-      // assigning a new filelist to the input
-      // will trigger a new change event...
+      if (fileList.length > 3) {fileList.length = 3;};
+
       eventImage1.onchange = null;
       eventImage1.files = fileList;
       eventImage1.onchange = change;
 
+      sistemFile = null;
+      sistemFile = fileList;
+
       spinner.classList.add("d-none");
       output.classList.remove("d-none");
+
+      console.log(sistemFile);
+      console.log(eventImage1.files);
     }
+
   </script>
     
 @endpush

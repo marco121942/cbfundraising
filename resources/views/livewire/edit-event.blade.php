@@ -384,15 +384,6 @@
         let conversionResult = await heic2any({ blob });
 
         return conversionResult;
-        
-        // await heic2any({
-        //     blob: file,
-        //     toType: "image/jpeg"
-        // }).then(function (convertedFile) {
-        //     convertedFile.name = file.name.substring(0, file.name.lastIndexOf('.')) + '.jpeg';
-        //     // return resolve(convertedFile);
-        //     return convertedFile;
-        // }).catch(error => window.alert('error en heic2any'));
       } 
     }
 
@@ -426,10 +417,10 @@
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
-                                    <div class="card-body bg-light">
+                                    <div class="card-body bg-light text-center">
                                       <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                       <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-                                      <h1>Event Image ${i}</h1>
+                                      <h1 class="text-muted">Event Image ${i}</h1>
                                     </div>
                                   </div>`;
           
@@ -475,10 +466,10 @@
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
-                                    <div class="card-body bg-light">
+                                    <div class="card-body bg-light text-center">
                                       <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                       <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-                                      <h1>Event Image ${k}</h1>
+                                      <h1 class="text-muted">Event Image ${k}</h1>
                                     </div>
                                   </div>`;
           
@@ -498,15 +489,15 @@
             const heightImg = await img.height;
             // const width = 1024;
             // const height = 540;
-            let width = 1024;
-            let height = 1024;
-            if (widthImg > heightImg) {
-              width = widthImg;
-              height = widthImg;
-            } else if (widthImg < heightImg) {
+            // let width = 1024;
+            // let height = 540;
+            // if (widthImg > heightImg) {
               width = heightImg;
-              height = heightImg;
-            };
+              height = widthImg;
+            // } else {
+            //   width = widthImg;
+            //   height = heightImg;
+            // };
 
             console.log('width');
             console.log(width);
@@ -539,10 +530,10 @@
             newElement.innerHTML = `<div class="card">
                                       <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                       </div>
-                                      <div class="card-body bg-light">
+                                      <div class="card-body bg-light text-center">
                                         <a href="#" onclick="girar('${nameFilete}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                         <a href="#" onclick="borrar('${nameFilete}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-                                        <h1>Event Image ${k}</h1>
+                                        <h1 class="text-muted">Event Image ${k}</h1>
                                       </div>
                                     </div>`;
             
@@ -597,10 +588,10 @@
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
-                                    <div class="card-body bg-light">
+                                    <div class="card-body bg-light text-center">
                                       <a href="#" onclick="girar('${file.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                       <a href="#" onclick="borrar('${file.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-                                      <h1>Event Image ${i}</h1>
+                                      <h1 class="text-muted">Event Image ${i}</h1>
                                     </div>
                                   </div>`;
           
@@ -649,10 +640,10 @@
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
-                                    <div class="card-body bg-light">
+                                    <div class="card-body bg-light text-center">
                                       <a href="#" onclick="girar('${nameFile}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                       <a href="#" onclick="borrar('${nameFile}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-                                      <h1>Event Image ${i}</h1>
+                                      <h1 class="text-muted">Event Image ${i}</h1>
                                     </div>
                                   </div>`;
           

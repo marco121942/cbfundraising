@@ -29,7 +29,7 @@
         
         <!-- Slide 1 -->
         <div class="carousel-item active" style="background-image: url({{url('/')}}/{{ Str::replace(' ','%20',$evento->eventImage1) }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">
-          <div class="carousel-container">
+          <div class="carousel-container" style="top: 282px !important;">
             <div class="carousel-content animate__animated animate__fadeInUp">
               <h2 class="text-center" >{{ $evento->title1 }}</h2>
               <a class="content">{{ $evento->description1 }}</a>
@@ -42,7 +42,7 @@
 
         <!-- Slide 2 -->
         <div class="carousel-item" style="background-image: url({{url('/')}}/{{ Str::replace(' ','%20',$evento->eventImage2) }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">
-          <div class="carousel-container">
+          <div class="carousel-container" style="top: 282px !important;">
             <div class="carousel-content animate__animated animate__fadeInUp">
               <h2 class="text-center" >{{ $evento->title2 }}</h2>
               <a class="content">{{ $evento->description2 }}</a>
@@ -57,7 +57,7 @@
         
         <!-- Slide 3 -->
         <div class="carousel-item" style="background-image: url({{url('/')}}/{{ Str::replace(' ','%20',$evento->eventImage3) }});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;">
-          <div class="carousel-container">
+          <div class="carousel-container" style="top: 282px !important;">
             <div class="carousel-content animate__animated animate__fadeInUp">
               <h2 class="text-center" >{{ $evento->title3 }}</h2>
               <a class="content">{{ $evento->description3 }}</a>

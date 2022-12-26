@@ -411,8 +411,13 @@
         if(filete.name !== idImg){
           const url = URL.createObjectURL(filete);
           const newElement = document.createElement("div");
-          newElement.classList.add("col-6");
-          newElement.classList.add("col-md-4");
+          newElement.classList.add("col-12");
+          if(i !== 3){
+            newElement.classList.add("col-md-6");
+          }else{
+            newElement.classList.add("col-md-12");
+          }
+          newElement.classList.add("col-lg-4");
           newElement.classList.add("mx-auto");
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
@@ -420,7 +425,7 @@
                                     <div class="card-body bg-light text-center">
                                       <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                       <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-                                      <h1 class="text-muted">Event Image ${i}</h1>
+                                      <h3 class="text-muted">Event Image ${i}</h3>
                                     </div>
                                   </div>`;
           
@@ -460,8 +465,13 @@
         if(filete.name !== idImg){
           const url = URL.createObjectURL(filete);
           const newElement = document.createElement("div");
-          newElement.classList.add("col-6");
-          newElement.classList.add("col-md-4");
+          newElement.classList.add("col-12");
+          if(k !== 3){
+            newElement.classList.add("col-md-6");
+          }else{
+            newElement.classList.add("col-md-12");
+          }
+          newElement.classList.add("col-lg-4");
           newElement.classList.add("mx-auto");
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
@@ -469,7 +479,7 @@
                                     <div class="card-body bg-light text-center">
                                       <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                       <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-                                      <h1 class="text-muted">Event Image ${k}</h1>
+                                      <h3 class="text-muted">Event Image ${k}</h3>
                                     </div>
                                   </div>`;
           
@@ -524,16 +534,21 @@
             
             const url = await  URL.createObjectURL(resizedFile);
             const newElement = await document.createElement("div");
-            newElement.classList.add("col-6");
-            newElement.classList.add("col-md-4");
-            newElement.classList.add("mx-auto");
+            newElement.classList.add("col-12");
+          if(k !== 3){
+            newElement.classList.add("col-md-6");
+          }else{
+            newElement.classList.add("col-md-12");
+          }
+          newElement.classList.add("col-lg-4");
+          newElement.classList.add("mx-auto");
             newElement.innerHTML = `<div class="card">
                                       <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                       </div>
                                       <div class="card-body bg-light text-center">
                                         <a href="#" onclick="girar('${nameFilete}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                         <a href="#" onclick="borrar('${nameFilete}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-                                        <h1 class="text-muted">Event Image ${k}</h1>
+                                        <h3 class="text-muted">Event Image ${k}</h3>
                                       </div>
                                     </div>`;
             
@@ -582,8 +597,13 @@
         for (const file of result) {
           const url = URL.createObjectURL(file);
           const newElement = document.createElement("div");
-          newElement.classList.add("col-6");
-          newElement.classList.add("col-md-4");
+          newElement.classList.add("col-12");
+          if(i !== 3){
+            newElement.classList.add("col-md-6");
+          }else{
+            newElement.classList.add("col-md-12");
+          }
+          newElement.classList.add("col-lg-4");
           newElement.classList.add("mx-auto");
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
@@ -591,7 +611,7 @@
                                     <div class="card-body bg-light text-center">
                                       <a href="#" onclick="girar('${file.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                       <a href="#" onclick="borrar('${file.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-                                      <h1 class="text-muted">Event Image ${i}</h1>
+                                      <h3 class="text-muted">Event Image ${i}</h3>
                                     </div>
                                   </div>`;
           
@@ -634,8 +654,13 @@
           console.log(resizedFile);
           
           const newElement = document.createElement("div");
-          newElement.classList.add("col-6");
-          newElement.classList.add("col-md-4");
+          newElement.classList.add("col-12");
+          if(i !== 3){
+            newElement.classList.add("col-md-6");
+          }else{
+            newElement.classList.add("col-md-12");
+          }
+          newElement.classList.add("col-lg-4");
           newElement.classList.add("mx-auto");
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
@@ -643,7 +668,7 @@
                                     <div class="card-body bg-light text-center">
                                       <a href="#" onclick="girar('${nameFile}')" class="btn btn-outline-primary waves-effect">Girar</a>
                                       <a href="#" onclick="borrar('${nameFile}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
-                                      <h1 class="text-muted">Event Image ${i}</h1>
+                                      <h3 class="text-muted">Event Image ${i}</h3>
                                     </div>
                                   </div>`;
           

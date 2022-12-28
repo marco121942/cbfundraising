@@ -423,8 +423,8 @@
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
                                     <div class="card-body bg-light text-center">
-                                      <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
-                                      <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                      <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-success round mx-auto waves-effect">Rotate</a>
+                                      <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-danger round mx-auto waves-effect">Delete</a><br>
                                       <h3 class="text-muted">Event Image ${i}</h3>
                                     </div>
                                   </div>`;
@@ -477,8 +477,8 @@
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
                                     <div class="card-body bg-light text-center">
-                                      <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
-                                      <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                      <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-success round mx-auto waves-effect">Rotate</a>
+                                      <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-danger round mx-auto waves-effect">Delete</a><br>
                                       <h3 class="text-muted">Event Image ${k}</h3>
                                     </div>
                                   </div>`;
@@ -546,8 +546,8 @@
                                       <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                       </div>
                                       <div class="card-body bg-light text-center">
-                                        <a href="#" onclick="girar('${nameFilete}')" class="btn btn-outline-primary waves-effect">Girar</a>
-                                        <a href="#" onclick="borrar('${nameFilete}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                        <a href="#" onclick="girar('${nameFilete}')" class="btn btn-outline-success round mx-auto waves-effect">Rotate</a>
+                                        <a href="#" onclick="borrar('${nameFilete}')" class="btn btn-outline-danger round mx-auto waves-effect">Delete</a><br>
                                         <h3 class="text-muted">Event Image ${k}</h3>
                                       </div>
                                     </div>`;
@@ -609,8 +609,8 @@
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
                                     <div class="card-body bg-light text-center">
-                                      <a href="#" onclick="girar('${file.name}')" class="btn btn-outline-primary waves-effect">Girar</a>
-                                      <a href="#" onclick="borrar('${file.name}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                      <a href="#" onclick="girar('${file.name}')" class="btn btn-outline-success round mx-auto waves-effect">Rotate</a>
+                                      <a href="#" onclick="borrar('${file.name}')" class="btn btn-outline-danger round mx-auto waves-effect">Delete</a><br>
                                       <h3 class="text-muted">Event Image ${i}</h3>
                                     </div>
                                   </div>`;
@@ -666,8 +666,8 @@
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
                                     <div class="card-body bg-light text-center">
-                                      <a href="#" onclick="girar('${nameFile}')" class="btn btn-outline-primary waves-effect">Girar</a>
-                                      <a href="#" onclick="borrar('${nameFile}')" class="btn btn-outline-primary waves-effect">Eliminar</a>
+                                      <a href="#" onclick="girar('${nameFile}')" class="btn btn-outline-success round mx-auto waves-effect">Rotate</a>
+                                      <a href="#" onclick="borrar('${nameFile}')" class="btn btn-outline-danger round mx-auto waves-effect">Delete</a><br>
                                       <h3 class="text-muted">Event Image ${i}</h3>
                                     </div>
                                   </div>`;

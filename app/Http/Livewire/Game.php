@@ -200,8 +200,7 @@ class Game extends Component
                         $this->premio, $this->partnerActual, $slug, $this->suerte, $this->imgPremio, $this->enlace
                     ) );
 
-        LOG::info('$envio');
-        LOG::info($envio);
+        LOG::info('se envio el correo');
 
     }
 }

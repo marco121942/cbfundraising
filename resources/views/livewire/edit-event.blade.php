@@ -70,7 +70,7 @@
 
               <div class="form-group">
                 <label for="title1">Tittle 1</label>
-                <input type="text" class="form-control" id='title1' name='title1' placeholder="title1" value="{{$title1}}">
+                <input type="text" class="form-control" id='title1' name='title1' placeholder="title1" wire:model.defer='title1' >
                 <!-- id="title1" name="title1" -->
                 @error('title1')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -82,7 +82,7 @@
 
               <div class="form-group">
                 <label for="description1">Description 1</label>
-                <textarea rows="3" class="form-control" id='description1' name='description1' value="{{$description1}}" ></textarea>
+                <textarea rows="3" class="form-control" id='description1' name='description1' wire:model.defer='description1' ></textarea>
                 <!-- id="description1" name="description1"  -->
                 @error('description1')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -96,7 +96,7 @@
 
               <div class="form-group">
                 <label for="title2">Tittle 2</label>
-                <input type="text" class="form-control" id='title2' name='title2' placeholder="title2" value="{{$title2}}">
+                <input type="text" class="form-control" id='title2' name='title2' placeholder="title2" wire:model.defer='title2'>
                 
                 @error('title2')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -108,7 +108,7 @@
 
               <div class="form-group">
                 <label for="description2">Description 2</label>
-                <textarea rows="3" class="form-control" id='description2' name='description2' value="description2"></textarea>
+                <textarea rows="3" class="form-control" id='description2' name='description2' wire:model.defer='description2'></textarea>
                 <!-- id="description2" name="description2" -->
                 @error('description2')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -122,7 +122,7 @@
 
               <div class="form-group">
                 <label for="title3">Tittle 3</label>
-                <input type="text" class="form-control" id='title3' name='title3' placeholder="title3" value="{{$title3}}" >
+                <input type="text" class="form-control" id='title3' name='title3' placeholder="title3" wire:model.defer='title3' >
                 <!-- id="title3" name="title3" -->
                 @error('title3')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -134,7 +134,7 @@
 
               <div class="form-group">
                 <label for="description3">Description 3</label>
-                <textarea rows="3" class="form-control" id='description3' name='description3' value="description3" ></textarea>
+                <textarea rows="3" class="form-control" id='description3' name='description3' wire:model.defer='description3' ></textarea>
                 <!-- id="description3" name="description3" -->
                 @error('description3')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -230,7 +230,7 @@
 
               <div class="form-group">
                 <label for="title1">Tittle 1</label>
-                <input type="text" class="form-control" id='title1' name='title1' placeholder="title1" value="{{$title1}}">
+                <input type="text" class="form-control" id='title1' name='title1' placeholder="title1" wire:model.defer='title1'>
                 <!-- id="title1" name="title1" -->
                 @error('title1')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -242,7 +242,7 @@
 
               <div class="form-group">
                 <label for="description1">Description 1</label>
-                <textarea rows="3" class="form-control" id='description1' name='description1' value="{{$description1}}" ></textarea>
+                <textarea rows="3" class="form-control" id='description1' name='description1' wire:model.defer='description1' ></textarea>
                 <!-- id="description1" name="description1"  -->
                 @error('description1')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -256,7 +256,7 @@
 
               <div class="form-group">
                 <label for="title2">Tittle 2</label>
-                <input type="text" class="form-control" id='title2' name='title2' placeholder="title2" value="{{$title2}}">
+                <input type="text" class="form-control" id='title2' name='title2' placeholder="title2" wire:model.defer='title2'>
                 
                 @error('title2')
                   <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -268,7 +268,7 @@
 
               <div class="form-group">
                 <label for="description2">Description 2</label>
-                <textarea rows="3" class="form-control" id='description2' name='description2' value="description2"></textarea>
+                <textarea rows="3" class="form-control" id='description2' name='description2' wire:model.defer='description2'></textarea>
                 <!-- id="description2" name="description2" -->
                 @error('description2')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -282,7 +282,7 @@
 
               <div class="form-group">
                 <label for="title3">Tittle 3</label>
-                <input type="text" class="form-control" id='title3' name='title3' placeholder="title3" value="{{$title3}}" >
+                <input type="text" class="form-control" id='title3' name='title3' placeholder="title3" wire:model.defer='title3' >
                 <!-- id="title3" name="title3" -->
                 @error('title3')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -294,7 +294,7 @@
 
               <div class="form-group">
                 <label for="description3">Description 3</label>
-                <textarea rows="3" class="form-control" id='description3' name='description3' value="description3" ></textarea>
+                <textarea rows="3" class="form-control" id='description3' name='description3' wire:model.defer='description3' ></textarea>
                 <!-- id="description3" name="description3" -->
                 @error('description3')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -422,10 +422,10 @@
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
-                                    <div class="card-body bg-light text-center">
+                                    <div class="text-center py-1">
                                       <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-success round mx-auto waves-effect">Rotate</a>
                                       <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-danger round mx-auto waves-effect">Delete</a><br>
-                                      <h3 class="text-muted">Event Image ${i}</h3>
+                                      <h3 class="text-white">Event Image ${i}</h3>
                                     </div>
                                   </div>`;
           
@@ -476,10 +476,10 @@
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
-                                    <div class="card-body bg-light text-center">
+                                    <div class="text-center py-1">
                                       <a href="#" onclick="girar('${filete.name}')" class="btn btn-outline-success round mx-auto waves-effect">Rotate</a>
                                       <a href="#" onclick="borrar('${filete.name}')" class="btn btn-outline-danger round mx-auto waves-effect">Delete</a><br>
-                                      <h3 class="text-muted">Event Image ${k}</h3>
+                                      <h3 class="text-white">Event Image ${k}</h3>
                                     </div>
                                   </div>`;
           
@@ -545,10 +545,10 @@
             newElement.innerHTML = `<div class="card">
                                       <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                       </div>
-                                      <div class="card-body bg-light text-center">
+                                      <div class="text-center py-1">
                                         <a href="#" onclick="girar('${nameFilete}')" class="btn btn-outline-success round mx-auto waves-effect">Rotate</a>
                                         <a href="#" onclick="borrar('${nameFilete}')" class="btn btn-outline-danger round mx-auto waves-effect">Delete</a><br>
-                                        <h3 class="text-muted">Event Image ${k}</h3>
+                                        <h3 class="text-white">Event Image ${k}</h3>
                                       </div>
                                     </div>`;
             
@@ -608,10 +608,10 @@
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
-                                    <div class="card-body bg-light text-center">
+                                    <div class="text-center py-1">
                                       <a href="#" onclick="girar('${file.name}')" class="btn btn-outline-success round mx-auto waves-effect">Rotate</a>
                                       <a href="#" onclick="borrar('${file.name}')" class="btn btn-outline-danger round mx-auto waves-effect">Delete</a><br>
-                                      <h3 class="text-muted">Event Image ${i}</h3>
+                                      <h3 class="text-white">Event Image ${i}</h3>
                                     </div>
                                   </div>`;
           
@@ -665,10 +665,10 @@
           newElement.innerHTML = `<div class="card">
                                     <div class="card-img-top img-fluid" style="background-image: url(${url});background-position: center;BACKGROUND-SIZE: contain;background-repeat: no-repeat;height:300px;">
                                     </div>
-                                    <div class="card-body bg-light text-center">
+                                    <div class="text-center py-1">
                                       <a href="#" onclick="girar('${nameFile}')" class="btn btn-outline-success round mx-auto waves-effect">Rotate</a>
                                       <a href="#" onclick="borrar('${nameFile}')" class="btn btn-outline-danger round mx-auto waves-effect">Delete</a><br>
-                                      <h3 class="text-muted">Event Image ${i}</h3>
+                                      <h3 class="text-white">Event Image ${i}</h3>
                                     </div>
                                   </div>`;
           

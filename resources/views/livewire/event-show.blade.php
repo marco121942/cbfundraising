@@ -107,20 +107,19 @@
       <div class="container">
         <div class="row">
           
-          <x-shared-popover-button :evento="$evento" class="col-md-3 mb-3" />
+          <div class="text-center">
+            <a href="{{ route('donate', ['event' => $evento->slug]) }}" class="btn-get-started query col-md-3 text-center ">Donate</a>
+          </div>          
                     
-          <div class="col-md  query2" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-10 mx-auto query2" data-aos="zoom-in" data-aos-delay="100">
             <div class="feature-block">
 
               <img class="img-responsive" src="{{ asset('assets/img/BOLETO EVENTO FINAL.png') }}" alt="img">
-              
 
             </div>
           </div>
 
-          <div class="text-center">
-            <a href="{{ route('donate', ['event' => $evento->slug]) }}" class="btn-get-started query col-md-3 text-center ">Donate</a>
-          </div>
+          <x-shared-popover-button :evento="$evento" class="col-md-3 mb-3" />
 
         </div>
       </div>

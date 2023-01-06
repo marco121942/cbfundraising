@@ -148,7 +148,7 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/multi-responsive-bootstrap-template/ -->
-        Power by <a href="https://consulfinhn.site/">Consulfinhn</a>
+        Power by <a href="https://cbfundraising.site/">CB Fundraising</a>
       </div>
     </div>
   </footer><!-- End Footer -->

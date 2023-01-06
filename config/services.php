@@ -31,14 +31,15 @@ return [
     ],
 
     'stripe' => [
+        'model'     => App\User::class,
         'base_uri'  => env('STRIPE_BASE_URI'),
         'key'       => env('STRIPE_KEY'),
         'secret'    => env('STRIPE_SECRET'),
         'class'     => App\App\Services\StripeService::class,
-        'donation' => [
-            'two' => env('STRIPE_DONATION_TWO'),
-            'four' => env('STRIPE_DONATION_FOUR'),
-            'six' => env('STRIPE_DONATION_SIX'),
+        'donation'  => [
+            'two'   => env('STRIPE_DONATION_TWO'),
+            'four'  => env('STRIPE_DONATION_FOUR'),
+            'six'   => env('STRIPE_DONATION_SIX'),
         ],
     ],
 

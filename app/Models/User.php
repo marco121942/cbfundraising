@@ -13,6 +13,12 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\MyResetPassword;
 
 /*
+* -- Cashier
+*/
+
+use Laravel\Cashier\Billable;
+
+/*
 * -- Permission
 */
 use Spatie\Permission\Traits\HasRoles;
